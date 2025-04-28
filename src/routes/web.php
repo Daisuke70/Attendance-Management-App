@@ -15,3 +15,4 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/register', [AuthController::class, 'showRegisterForm']);
+Route::post('/register', [AuthController::class, 'register']);

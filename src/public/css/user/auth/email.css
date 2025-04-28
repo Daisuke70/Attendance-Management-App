@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.email-verify__header {
+    background: black;
+    width: 100vw;
+    line-height: 0;
+}
+
+.email-verify__header img {
+    vertical-align: bottom;
+    padding: 25px 30px;
+}
+
+.email-verify__content {
+    margin-top: 200px;
+    text-align: center;
+}
+
+.email-verify__button {
+    display: inline-block;
+    font-weight: bold;
+    padding: 10px 18px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-top: 40px;
+    background: #D9D9D9;
+}
+
+.email-verify__resend-button {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: 	#0273CC;
+    font-size: 18px;
+    margin-top: 25px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .email-verify__header {
+        background: black;
+        width: 100vw;
+        line-height: 0;
+    }
+
+    .email-verify__header img {
+        vertical-align: bottom;
+        padding: 25px 30px;
+        width: 260px;
+    }
+
+    .email-verify__content {
+        margin-top: 160px;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .email-verify__button {
+        display: inline-block;
+        font-weight: bold;
+        padding: 10px 18px;
+        font-size: 15px;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin-top: 40px;
+        background: #D9D9D9;
+    }
+
+    .email-verify__resend-button {
+        display: inline-block;
+        background: none;
+        border: none;
+        color: 	#0273CC;
+        font-size: 16px;
+        margin-top: 25px;
+    }
+}

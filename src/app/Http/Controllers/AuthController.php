@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -34,12 +35,18 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('user.auth.login');
     }
 
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
+
+        try {
+            $request->authenticate();
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -49,12 +56,9 @@ class AuthController extends Controller
                 return redirect('/email/verify');
             }
 
-            if ($user->isProfileIncomplete()) {
-                return redirect('/mypage/profile');
-            }
-
-            return redirect('/');
+            return redirect('/attendance');
         }
+
         return back();
     }
 

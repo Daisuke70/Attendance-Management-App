@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,13 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/register', [AuthController::class, 'showRegisterForm']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/email/verify', [VerificationController::class, 'showVerificationNotice']);
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])->name('verification.verify');
+Route::post('/email/resend', [VerificationController::class, 'resendVerificationEmail'])->name('verification.resend');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm']);
+});

@@ -10,24 +10,27 @@
     line-height: 0;
 }
 
-.header-logo{
+.header-content {
+    display: flex;
+}
+
+.header-content__logo {
     vertical-align: bottom;
     padding: 25px 45px;
 }
 
-.header-content {
+.header-content__link {
     display: flex;
-    justify-content: space-between;
+    margin-left: 650px;
 }
 
-.keyword {
-    width: 490px;
-    height: 43px;
-    font-size: 18px;
-    padding-left: 35px;
-    margin-top: 23px;
+.header-link {
+    color: white;
+    text-decoration: none;
     border: none;
-    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 45px 40px 0px 0px;
 }
 
 .logout-button {
@@ -35,40 +38,8 @@
     background: black;
     border: none;
     font-size: 20px;
+    font-weight: bold;
     margin: 30px 30px 0px 0px;
-}
-
-.login {
-    margin-top: 20px;
-}
-
-.login-link {
-    display: block;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 45px 50px 0px 10px;
-}
-
-.link-content {
-    margin: 45px 43px 0px -100px;
-}
-
-.mypage-link {
-    color: white;
-    text-decoration: none;
-    padding-right: 33px;
-    font-size: 20px;
-}
-
-.sell-link {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    border: none;
-    border-radius: 3px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
@@ -76,7 +47,7 @@
         margin: 0;
         padding: 0;
     }
-
+    
     .header {
         background: black;
         width: 100%;
@@ -84,69 +55,39 @@
         line-height: 0;
     }
     
-    .header-logo{
+    .header-content {
+        display: flex;
+    }
+    
+    .header-content__logo {
         vertical-align: bottom;
-        padding: 15px 15px;
+        padding: 20px 40px;
     }
 
     .logo-img{
-        width: 190px;
+        width: 183px;
     }
     
-    .header-content {
+    .header-content__link {
         display: flex;
-        justify-content: space-between;
+        margin-left: 190px;
     }
     
-    .keyword {
-        width: 250px;
-        height: 30px;
-        font-size: 15px;
-        padding-left: 25px;
-        margin-top: 13px;
+    .header-link {
+        color: white;
+        text-decoration: none;
         border: none;
-        border-radius: 5px;
+        font-size: 17px;
+        font-weight: bold;
+        margin: 30px 23px 0px 0px;
     }
-
     
     .logout-button {
         color: white;
         background: black;
         border: none;
         font-size: 17px;
-        margin: 15px 28px 0px 10px;
-    }
-    
-    .login {
-        margin-top: 28px;
-    }
-    
-    .login-link {
-        display: block;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        margin: 17px 30px 0px 13px;
-    }
-    
-    .link-content {
-        margin: 28px 23px 0px -25px;
-    }
-    
-    .mypage-link {
-        color: white;
-        text-decoration: none;
-        padding-right: 10px;
-        font-size: 17px;
-    }
-    
-    .sell-link {
-        background-color: white;
-        color: black;
-        padding: 7px 15px;
-        text-decoration: none;
-        font-size: 12px;
-        border: none;
-        border-radius: 3px;
+        font-weight: bold;
+        margin: 18px 25px 0px 0px;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Carbon::setLocale(config('app.locale')); // APP_LOCALEの値が適用される
+        setlocale(LC_TIME, 'ja_JP.UTF-8');       // strftimeやformatLocalizedで日本語表示
     }
 }

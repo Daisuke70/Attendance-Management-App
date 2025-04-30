@@ -27,4 +27,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm']);
+    Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
+    Route::post('/attendance/break-start', [AttendanceController::class, 'startBreak'])->name('attendance.startBreak');
+    Route::post('/attendance/break-end', [AttendanceController::class, 'endBreak'])->name('attendance.endBreak');
+    Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
 });

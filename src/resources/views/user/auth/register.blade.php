@@ -29,7 +29,7 @@
                 </div>
                 <div class="register-form__group">
                     <label class="register-form__label" for="email">メールアドレス</label>
-                    <input class="register-form__input" type="mail" name="email" id="email" value="{{ old('email') }}" />
+                    <input class="register-form__input" type="email" name="email" id="email" value="{{ old('email') }}" />
                     <p class="register-form__error-message">
                         @error('email')
                         {{ $message }}
@@ -50,7 +50,7 @@
                     <input class="register-form__input" type="password" name="password_confirmation" id="password_confirmation" />
                 </div>
                 <div class="register-form__button">
-                    <input class="register" type="submit" value="登録する">
+                    <input class="register-form__submit" type="submit" value="登録する">
                 </div>
             </form>
             <a href="/login" class="login">ログインはこちら</a>

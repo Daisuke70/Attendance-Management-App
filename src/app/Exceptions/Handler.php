@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +38,20 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof ThrottleRequestsException) {
+            $retryAfter = $exception->getHeaders()['Retry-After'] ?? 60;
+            return redirect()->back()
+                ->withInput()
+                ->with([
+                    'error' => "認証メールの再送回数が上限に達しました。{$retryAfter}秒後にもう一度お試しください。",
+                    'retry_after' => $retryAfter
+                ]);
+        }
+    
+        return parent::render($request, $exception);
     }
 }

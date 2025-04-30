@@ -59,7 +59,7 @@ body {
     margin-top: 70px;
 }
 
-.register {
+.register-form__submit {
     color: white;
     width: 565px;
     background: black;
@@ -144,7 +144,7 @@ body {
         margin-top: 70px;
     }
     
-    .register {
+    .register-form__submit {
         color: white;
         width: 540px;
         background: black;

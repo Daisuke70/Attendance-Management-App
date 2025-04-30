@@ -30,6 +30,8 @@ class AuthController extends Controller
 
         $user->sendEmailVerificationNotification();
 
+        session(['email_for_verification' => $user->email]);
+
         return redirect('/email/verify');
     }
 
@@ -40,26 +42,22 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-
         try {
             $request->authenticate();
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            if (!$user->hasVerifiedEmail()) {
-                Auth::logout();
-                return redirect('/email/verify');
-            }
-
-            return redirect('/attendance');
+    
+        $user = Auth::user();
+    
+        if (!$user->hasVerifiedEmail()) {
+            $email = $request->input('email');
+            Auth::logout();
+            session(['email_for_verification' => $email]);
+            return redirect('/email/verify');
         }
-
-        return back();
+    
+        return redirect('/attendance');
     }
 
 

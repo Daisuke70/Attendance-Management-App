@@ -25,24 +25,26 @@
         <form action="{{ route('attendance.clockIn') }}" method="POST">
             @csrf
             <input type="hidden" name="date" value="{{ $now->toDateString() }}">
-            <button type="submit" class="register-button__attendance">出勤</button>
+            <button type="submit" class="register-button__clock-in">出勤</button>
         </form>
     @elseif ($attendance->status === '出勤中')
-        <form action="{{ route('attendance.startBreak') }}" method="POST">
-            @csrf
-            <input type="hidden" name="date" value="{{ $now->toDateString() }}">
-            <button type="submit" class="register-button__break">休憩</button>
-        </form>
-        <form action="{{ route('attendance.clockOut') }}" method="POST">
-            @csrf
-            <input type="hidden" name="date" value="{{ $now->toDateString() }}">
-            <button type="submit" class="register-button__leave">退勤</button>
-        </form>
+        <div class="register-attendance__working">
+            <form action="{{ route('attendance.clockOut') }}" method="POST">
+                @csrf
+                <input type="hidden" name="date" value="{{ $now->toDateString() }}">
+                <button type="submit" class="register-button__clock-out">退勤</button>
+            </form>
+            <form action="{{ route('attendance.startBreak') }}" method="POST">
+                @csrf
+                <input type="hidden" name="date" value="{{ $now->toDateString() }}">
+                <button type="submit" class="register-button__start-break">休憩入</button>
+            </form>
+        </div>
     @elseif ($attendance->status === '休憩中')
         <form action="{{ route('attendance.endBreak') }}" method="POST">
             @csrf
             <input type="hidden" name="date" value="{{ $now->toDateString() }}">
-            <button type="submit" class="register-button__return-break">休憩戻</button>
+            <button type="submit" class="register-button__end-break">休憩戻</button>
         </form>
     @endif
 </div>

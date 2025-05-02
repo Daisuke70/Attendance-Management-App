@@ -41,7 +41,12 @@
                     <input class="login-form__submit" type="submit" value="ログインする">
                 </div>
             </form>
-            <a href="/register" class="register">会員登録はこちら</a>
+            @if ($errors->has('role'))
+                <div class="login-form__alert">
+                    {{ $errors->first('role') }}
+                </div>
+            @endif
+            <a href="/register" class="login-form__register">会員登録はこちら</a>
         </div>
     </div>
 </body>

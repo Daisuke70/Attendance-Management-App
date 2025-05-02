@@ -45,7 +45,7 @@ class AuthController extends Controller
         try {
             $request->authenticate();
         } catch (ValidationException $e) {
-            return redirect()->back()->withErrors($e->errors())->withInput();
+            return redirect()->back();
         }
     
         $user = Auth::user();
@@ -55,6 +55,13 @@ class AuthController extends Controller
             Auth::logout();
             session(['email_for_verification' => $email]);
             return redirect('/email/verify');
+        }
+
+        if ($user->role !== 'user') {
+            Auth::logout();
+            return redirect()->back()->withErrors([
+                'role' => 'この画面では、管理者はログインできません'
+            ])->withInput();
         }
     
         return redirect('/attendance');

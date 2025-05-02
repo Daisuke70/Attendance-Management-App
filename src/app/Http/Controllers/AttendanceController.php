@@ -87,4 +87,10 @@ class AttendanceController extends Controller
             ['status' => Attendance::STATUS_OFF_DUTY]
         );
     }
+
+    public function listUserAttendances()
+    {
+
+        return view('user.attendance.index');
+    }
 }

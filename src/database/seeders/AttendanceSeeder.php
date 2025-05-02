@@ -1,0 +1,54 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Attendance;
+use App\Models\BreakTime;
+use Illuminate\Support\Carbon;
+
+class AttendanceSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $user = User::where('email', 'test@user.com')->first();
+        if (!$user) {
+            $this->command->warn('ユーザーが見つかりませんでした。');
+            return;
+        }
+
+        $startDate = Carbon::parse('2025-01-01');
+        $endDate = Carbon::parse('2025-03-31');
+
+        while ($startDate->lte($endDate)) {
+            // 土日を除外
+            if ($startDate->isWeekday()) {
+                // 勤怠データ作成
+                $attendance = Attendance::factory()->create([
+                    'user_id' => $user->id,
+                    'date' => $startDate->toDateString(),
+                    'clock_in' => '08:30:00',
+                    'clock_out' => '17:30:00',
+                    'status' => 'finished',
+                ]);
+
+                // 休憩1：12:00〜12:30
+                BreakTime::factory()->create([
+                    'attendance_id' => $attendance->id,
+                    'start_time' => '12:00:00',
+                    'end_time' => '12:30:00',
+                ]);
+
+                // 休憩2：12:30〜13:00
+                BreakTime::factory()->create([
+                    'attendance_id' => $attendance->id,
+                    'start_time' => '12:30:00',
+                    'end_time' => '13:00:00',
+                ]);
+            }
+
+            $startDate->addDay();
+        }
+    }
+}

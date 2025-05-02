@@ -67,7 +67,115 @@
     color: black;
     border: none;
     border-radius: 15px;
-    padding: 9px 57px;
+    padding: 9px 45px;
+    margin: 65px 0px 0px 60px;
+}
+
+.register-button__end-break {
+    font-size: 23px;
+    font-weight: bold;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    padding: 9px 45px;
     margin-top: 65px;
 }
 
+.message {
+    font-size: 23px;
+    font-weight: bold;
+    margin-top: 65px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .content {
+        background: #F0EFF2;
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    .register-attendance {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .register-attendance__status {
+        color: #696969;
+        background: #C8C8C8;
+        border-radius: 20px;
+        padding: 3px 20px;
+        font-weight: bold;
+        margin-top: 10%;
+    }
+    
+    .register-attendance__date {
+        font-size: 35px;
+        margin-top: 30px;
+    }
+    
+    .register-attendance__time {
+        font-size: 45px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    
+    .register-button__clock-in {
+        font-size: 20px;
+        font-weight: bold;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 7px 50px;
+        margin-top: 65px;
+    }
+    
+    .register-attendance__working {
+        display: flex;
+    }
+    
+    .register-button__clock-out {
+        font-size: 20px;
+        font-weight: bold;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 9px 50px;
+        margin-top: 65px;
+    }
+    
+    .register-button__start-break {
+        font-size: 20px;
+        font-weight: bold;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 15px;
+        padding: 9px 40px;
+        margin: 65px 0px 0px 60px;
+    }
+    
+    .register-button__end-break {
+        font-size: 20px;
+        font-weight: bold;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 15px;
+        padding: 9px 40px;
+        margin-top: 65px;
+    }
+    
+    .message {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 65px;
+    }
+}

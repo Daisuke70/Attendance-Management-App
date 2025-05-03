@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\BreakTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\Loader\ArrayLoader;
 
 class AttendanceController extends Controller
 {
@@ -88,9 +91,33 @@ class AttendanceController extends Controller
         );
     }
 
-    public function listUserAttendances()
+    public function listUserAttendances(Request $request)
     {
+        $translator = new Translator('ja');
+        $translator->addLoader('array', new ArrayLoader());
+        Carbon::setTranslator($translator);
+        Carbon::setLocale('ja');
 
-        return view('user.attendance.index');
+        $user = auth()->user();
+
+        $targetDate = $request->input('date')
+            ? Carbon::createFromFormat('Y-m', $request->input('date'))
+            : Carbon::now();
+
+        $startOfMonth = $targetDate->copy()->startOfMonth();
+        $endOfMonth = $targetDate->copy()->endOfMonth();
+
+        $datesInMonth = collect();
+        for ($date = $startOfMonth->copy(); $date->lte($endOfMonth); $date->addDay()) {
+            $datesInMonth->push($date->copy());
+        }
+
+        $attendances = Attendance::with('breakTimes')
+            ->where('user_id', $user->id)
+            ->whereBetween('date', [$startOfMonth, $endOfMonth])
+            ->get()
+            ->keyBy('date');
+
+            return view('user.attendance.index', compact('datesInMonth', 'attendances', 'targetDate'));
     }
 }

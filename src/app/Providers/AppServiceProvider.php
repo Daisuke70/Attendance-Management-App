@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Carbon::setLocale(config('app.locale')); // APP_LOCALEの値が適用される
-        setlocale(LC_TIME, 'ja_JP.UTF-8');       // strftimeやformatLocalizedで日本語表示
+        Carbon::setLocale(config('app.locale'));
+        setlocale(LC_TIME, 'ja_JP.UTF-8');
     }
 }

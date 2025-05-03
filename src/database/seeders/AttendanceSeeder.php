@@ -22,9 +22,7 @@ class AttendanceSeeder extends Seeder
         $endDate = Carbon::parse('2025-03-31');
 
         while ($startDate->lte($endDate)) {
-            // 土日を除外
             if ($startDate->isWeekday()) {
-                // 勤怠データ作成
                 $attendance = Attendance::factory()->create([
                     'user_id' => $user->id,
                     'date' => $startDate->toDateString(),
@@ -33,14 +31,12 @@ class AttendanceSeeder extends Seeder
                     'status' => 'finished',
                 ]);
 
-                // 休憩1：12:00〜12:30
                 BreakTime::factory()->create([
                     'attendance_id' => $attendance->id,
                     'start_time' => '12:00:00',
                     'end_time' => '12:30:00',
                 ]);
 
-                // 休憩2：12:30〜13:00
                 BreakTime::factory()->create([
                     'attendance_id' => $attendance->id,
                     'start_time' => '12:30:00',

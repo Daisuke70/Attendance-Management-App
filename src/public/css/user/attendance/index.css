@@ -1,0 +1,38 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #F0EFF2;
+    min-height: 100%;
+    font-family: sans-serif;
+}
+
+.content {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.attendance-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.attendance-table {
+    
+}
+
+.attendance-table__month-nav {
+    background: white;
+    width: 920px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.attendance-table__table {
+    background: white;
+    width: 920px;
+    margin-top: 50px;
+}

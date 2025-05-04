@@ -20,19 +20,139 @@ html, body {
     box-sizing: border-box;
 }
 
-.attendance-table {
-    
+.attendance-table h2 {
+    border-left: 7px solid black;
+    padding-left: 20px;
+    margin: 65px 810px 0px 0px;
 }
 
 .attendance-table__month-nav {
+    display: flex;
+    justify-content: space-between;
     background: white;
     width: 920px;
     height: 60px;
     border-radius: 10px;
+    margin-top: 40px;
+}
+
+.attendance-table__month-nav--prev {
+    text-decoration: none;
+    color: 	#737373;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0px 0px 25px;
+}
+
+.calender-label__back {
+    margin-right: 3px;
+}
+
+.arrow-img {
+    width: 23px;
+    height: 17px;
+    margin-right: 20p;
+}
+
+.calender-img {
+    width: 28px;
+    height: 28px;
+    margin: 12px -265px 0px 0px;
+}
+
+.attendance-table__month-nav--current {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 12px 45px 0px 0px;
+}
+
+.calender-label__next {
+    margin-left: 3px;
+}
+
+.attendance-table__month-nav--next {
+    text-decoration: none;
+    color: 	#737373;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 25px 0px 0px;
 }
 
 .attendance-table__table {
-    background: white;
     width: 920px;
+    background: white;
+    color: #737373;
+    font-size: 18px;
+    border-radius: 10px;
     margin-top: 50px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.attendance-table__head th{
+    border-bottom: 3px solid #E1E1E1;
+}
+
+.attendance-table__head__date {
+    padding: 15px 0px 13px 10px;
+}
+
+
+.attendance-table__head__in {
+    padding: 15px 0px 13px 60px;
+}
+
+.attendance-table__head__out {
+    padding: 15px 0px 13px 25px;
+}
+
+.attendance-table__head__break {
+    padding: 15px 18px 13px 0px;
+}
+
+.attendance-table__head__total {
+    padding: 15px 50px 13px 0px;
+}
+
+.attendance-table__head__detail {
+    padding: 15px 80px 13px 0px;
+}
+
+.attendance-table__body-row {
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.attendance-table__body-row {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.attendance-table__body__date {
+    padding: 15px 0px 13px 60px;
+}
+
+.attendance-table__body__in {
+    padding: 15px 0px 13px 81px;
+}
+
+.attendance-table__body__out {
+    padding: 15px 0px 13px 60px;
+}
+
+.attendance-table__body__break {
+    padding: 15px 0px 13px 45px;
+}
+
+.attendance-table__body__total {
+    padding: 15px 0px 13px 30px;
+}
+
+.attendance-table__body__detail {
+    padding: 15px 0px 13px 18px;
+}
+
+.detail-link {
+    text-decoration: none;
+    color: black;
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AttendanceCorrectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
     Route::get('/attendance/list', [AttendanceController::class, 'listUserAttendances'])->name('attendances.index');
     Route::get('/attendance/{id}', [AttendanceController::class, 'showAttendanceDetail'])->name('attendances.detail');
+    Route::post('/attendance/{id}/corrections', [AttendanceCorrectionController::class, 'submitCorrectionRequest'])
+        ->name('attendance.corrections.submit');
 });

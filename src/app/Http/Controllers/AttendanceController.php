@@ -128,6 +128,6 @@ class AttendanceController extends Controller
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
-        return view('attendance.detail', ['attendance' => $attendance,]);
+        return view('user.attendance.detail', ['attendance' => $attendance,]);
     }
 }

@@ -21,10 +21,10 @@
         <span class="attendance-table__month-nav--current">
             {{ $targetDate->format('Y/m') }}
         </span>
-        <a href="{{ route('attendances.index', ['date' => $targetDate->copy()->addMonth()->format('Y-m')]) }}" 
+        <a href="{{ route('attendances.index', ['date' => $targetDate->copy()->addMonth()->format('Y-m')]) }}"
             class="attendance-table__month-nav--next">
             翌月
-            <span class="calender-label__back">
+            <span class="calender-label__next">
                 <img src="{{ asset('/images/next-arrow.png') }}" alt="矢印の画像" class="arrow-img">
             </span>
         </a>

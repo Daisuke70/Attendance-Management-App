@@ -57,7 +57,7 @@ class AttendanceController extends Controller
     {
         $attendance = $this->getTodayAttendance();
 
-        $lastBreak = $attendance->breaks()->whereNull('end_time')->latest()->first();
+        $lastBreak = $attendance->breakTimes()->whereNull('end_time')->latest()->first();
         if ($lastBreak) {
             $lastBreak->end_time = now()->format('H:i:s');
             $lastBreak->save();

@@ -32,5 +32,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/break-end', [AttendanceController::class, 'endBreak'])->name('attendance.endBreak');
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
     Route::get('/attendance/list', [AttendanceController::class, 'listUserAttendances'])->name('attendances.index');
-    Route::get('/attendance/{id}', [AttendanceController::class, 'show'])->name('attendances.detail');
+    Route::get('/attendance/{id}', [AttendanceController::class, 'showAttendanceDetail'])->name('attendances.detail');
 });

@@ -27,4 +27,9 @@ class AttendanceCorrectionRequest extends Model
     {
         return $this->belongsTo(Attendance::class);
     }
+
+    public function correctionBreakTimes()
+    {
+        return $this->hasMany(AttendanceCorrectionBreakTime::class);
+    }
 }

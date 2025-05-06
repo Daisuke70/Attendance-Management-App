@@ -120,4 +120,14 @@ class AttendanceController extends Controller
 
             return view('user.attendance.index', compact('datesInMonth', 'attendances', 'targetDate'));
     }
+
+    public function showAttendanceDetail($id)
+    {
+        $attendance = Attendance::with('breakTimes')
+            ->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        return view('attendance.detail', ['attendance' => $attendance,]);
+    }
 }

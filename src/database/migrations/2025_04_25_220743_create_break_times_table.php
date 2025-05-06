@@ -21,7 +21,7 @@ class CreateBreakTimesTable extends Migration
             $table->timestamps();
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('break_times');

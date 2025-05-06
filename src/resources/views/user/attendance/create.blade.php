@@ -15,7 +15,9 @@
     @endphp
 
     <p class="register-attendance__date">{{ $now->format('Y年n月j日') }}({{ $weekdays[$now->dayOfWeek] }})</p>
-    <p class="register-attendance__time">{{ $now->format('H:i') }}</p>
+    <p class="register-attendance__time" id="current-time">
+        {{ $now->format('H:i') }}
+    </p>
 
     @if (session('message'))
         <p class="message">{{ session('message') }}</p>
@@ -48,4 +50,17 @@
         </form>
     @endif
 </div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('current-time').textContent = `${hours}:${minutes}`;
+    }
+
+    updateClock();
+
+    setInterval(updateClock, 60000);
+</script>
 @endsection

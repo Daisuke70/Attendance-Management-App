@@ -45,3 +45,31 @@ html, body {
 .attendance-detail__label {
     margin: 32px 0px 22px 50px;
 }
+
+.attendance-detail__name {
+    color: black;
+    margin: 32px 0px 22px 30%;
+}
+
+.attendance-detail__year {
+    color: black;
+    margin: 32px 0px 22px 29%;
+}
+
+.attendance-detail__date {
+    color: black;
+    margin: 32px 0px 22px 17%;
+}
+
+.attendance-detail__start-end {
+    color: black;
+    margin: 32px 0px 22px 22%;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+}
+
+.attendance-detail__input {
+    height: 25px;
+}

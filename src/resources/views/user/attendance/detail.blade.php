@@ -17,25 +17,31 @@
             </div>
             <div class="attendance-detail__group">
                 <p class="attendance-detail__label">日付</p>
-                <p class="attendance-detail__date">{{ $attendance->date }}</p>
+                <p class="attendance-detail__year">
+                    {{ \Carbon\Carbon::parse($attendance->date)->format('Y年') }}
+                </p>
+                <p class="attendance-detail__date">
+                    {{ \Carbon\Carbon::parse($attendance->date)->format('n月j日') }}
+                </p>
             </div>
             <div class="attendance-detail__group">
                 <p class="attendance-detail__label">出勤・退勤</p>
                 <div class="attendance-detail__start-end">
-                    <input type="time" name="start_time" value="{{ $attendance->clock_in }}" class="attendance-detail__input">
+                    <input type="time" name="start_time" value="{{ \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') }}" class="attendance-detail__input">
                         〜
-                    <input type="time" name="end_time" value="{{ $attendance->clock_out }}" class="attendance-detail__input">
+                    <input type="time" name="end_time" value="{{ \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') }}" class="attendance-detail__input">
                 </div>
             </div>
             <div class="attendance-detail__group">
                 <p class="attendance-detail__label">休憩</p>
                 <div class="attendance-detail__break-time">
                     @foreach ($attendance->breakTimes as $i => $break)
-                        <input type="time" name="breaks[{{ $i }}][start]" value="{{ $break->start_time }}" class="attendance-detail__input">
+                        <input type="time" name="breaks[{{ $i }}][start]" value="{{ \Carbon\Carbon::parse($break->start_time)->format('H:i') }}" class="attendance-detail__input">
                             〜
-                        <input type="time" name="breaks[{{ $i }}][end]" value="{{ $break->end_time }}" class="attendance-detail__input">
+                        <input type="time" name="breaks[{{ $i }}][end]" value="{{ \Carbon\Carbon::parse($break->end_time)->format('H:i') }}" class="attendance-detail__input">
                     @endforeach
                     <input type="time" name="breaks[{{ $attendance->breakTimes->count() }}][start]" class="attendance-detail__input">
+                        ~
                     <input type="time" name="breaks[{{ $attendance->breakTimes->count() }}][end]" class="attendance-detail__input">
                 </div>
             </div>

@@ -26,21 +26,21 @@ class AttendanceSeeder extends Seeder
                 $attendance = Attendance::factory()->create([
                     'user_id' => $user->id,
                     'date' => $startDate->toDateString(),
-                    'clock_in' => '08:30:00',
-                    'clock_out' => '17:30:00',
-                    'status' => 'finished',
+                    'clock_in' => '08:30',
+                    'clock_out' => '17:30',
+                    'status' => '退勤済み',
                 ]);
 
                 BreakTime::factory()->create([
                     'attendance_id' => $attendance->id,
-                    'start_time' => '12:00:00',
-                    'end_time' => '12:30:00',
+                    'start_time' => '12:00',
+                    'end_time' => '12:30',
                 ]);
 
                 BreakTime::factory()->create([
                     'attendance_id' => $attendance->id,
-                    'start_time' => '12:30:00',
-                    'end_time' => '13:00:00',
+                    'start_time' => '12:30',
+                    'end_time' => '13:00',
                 ]);
             }
 

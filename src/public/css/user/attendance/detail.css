@@ -32,7 +32,7 @@ html, body {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    margin: 50px 0px 100px 0px;
+    margin: 50px 0px 0px 0px;
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -62,7 +62,6 @@ html, body {
 }
 
 .attendance-detail__start-end {
-    color: black;
     margin: 32px 0px 22px 22%;
 }
 
@@ -71,5 +70,87 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .attendance-detail__input {
-    height: 25px;
+    height: 32px;
+    width: 85px;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 18px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.tilde {
+    margin: 0px 45px 0px 45px;
+    color: black;
+}
+
+.attendance-detail__break-time {
+    display: flex;
+    flex-direction: column;
+    margin: 32px 0px 22px 28%;;
+}
+
+.attendance-detail__break-time__input {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.break-time__label {
+    display: inline-block;
+    height: 36px;
+    width: 103px;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.break-time__input {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-left: 17px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.break-time__tilde {
+    margin: 5px 52px 0px 52px;
+    color: black;
+}
+
+.attendance-detail__group-remarks {
+    display: flex;
+}
+
+.attendance-detail__textarea {
+    resize: none;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    margin: 15px 0px 15px 28%;
+    width: 325px;
+    font-size: 16px;
+    padding: 10px 10px;
+}
+
+.attendance-detail__button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.attendance-detail__button-submit {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 40px;
+    border: black;
+    border-radius: 6px;
+    margin-top: 120px;
 }

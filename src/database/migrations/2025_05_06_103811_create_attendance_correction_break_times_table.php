@@ -18,7 +18,6 @@ class CreateAttendanceCorrectionBreakTimesTable extends Migration
             $table->unsignedBigInteger('attendance_correction_request_id');
             $table->time('new_start_time')->nullable();
             $table->time('new_end_time')->nullable();
-            $table->string('status', 20);
             $table->timestamps();
 
             $table->foreign('attendance_correction_request_id', 'acbt_acr_id_foreign')

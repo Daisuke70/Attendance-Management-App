@@ -20,28 +20,28 @@ class AttendanceCorrectionController extends Controller
             $correction = AttendanceCorrectionRequest::create([
                 'user_id' => Auth::id(),
                 'attendance_id' => $id,
-                'new_clock_in' => $request->input('clock_in'),
-                'new_clock_out' => $request->input('clock_out'),
+                'new_clock_in' => $request->input('start_time'),
+                'new_clock_out' => $request->input('end_time'),
                 'new_note' => $request->input('note'),
                 'status' => 'pending',
             ]);
     
-            foreach ($request->input('breaks', []) as $break) {
-                if (!empty($break['start']) || !empty($break['end'])) {
+            foreach ($request->input('break_times', []) as $break) {
+                if (!empty($break['start_time']) || !empty($break['end_time'])) {
                     AttendanceCorrectionBreakTime::create([
                         'attendance_correction_request_id' => $correction->id,
-                        'new_start_time' => $break['start'],
-                        'new_end_time' => $break['end'],
+                        'new_start_time' => $break['start_time'],
+                        'new_end_time' => $break['end_time'],
                     ]);
                 }
             }
     
             DB::commit();
-            return redirect()->route('attendance.detail', ['id' => $id])
-                ->with('message', '修正申請を送信しました');
+    
+            return redirect()->back()->with('message', '修正申請を送信しました。');
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->withErrors(['error' => '修正申請の送信に失敗しました。']);
+            return redirect()->back()->withErrors('申請処理中にエラーが発生しました。');
         }
     }
 }

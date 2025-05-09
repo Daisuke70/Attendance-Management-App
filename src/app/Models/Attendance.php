@@ -55,4 +55,14 @@ class Attendance extends Model
         $total = Carbon::parse($this->clock_out)->diffInMinutes(Carbon::parse($this->clock_in));
         return $total - $this->total_break_minutes;
     }
+
+    public function pendingCorrectionRequest()
+    {
+        return $this->correctionRequests()->where('status', 'pending')->latest()->first();
+    }
+
+    public function hasPendingCorrection(): bool
+    {
+        return $this->correctionRequests()->where('status', 'pending')->exists();
+    }
 }

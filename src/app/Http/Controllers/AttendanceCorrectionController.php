@@ -38,10 +38,10 @@ class AttendanceCorrectionController extends Controller
     
             DB::commit();
     
-            return redirect()->back()->with('message', '修正申請を送信しました。');
+            return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors('申請処理中にエラーが発生しました。');
+            return redirect()->back();
         }
     }
 }

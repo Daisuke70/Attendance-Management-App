@@ -144,9 +144,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border: #EBEBEB 1.5px solid;
     border-radius: 5px;
     margin: 15px 0px 15px 28%;
-    width: 325px;
+    width: 305px;
     font-size: 16px;
     padding: 10px 10px;
+}
+
+.attendance-detail__error-message__note {
+    color: red;
+    transform: translate(37.5%, -10px);
 }
 
 .attendance-detail__button {
@@ -163,4 +168,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border: black;
     border-radius: 6px;
     margin-top: 120px;
+}
+
+.attendance-detail__pending-message {
+    text-align: right;
+    color: 	#F67676;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+    letter-spacing: 0.15em;
 }

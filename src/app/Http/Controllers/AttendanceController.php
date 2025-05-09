@@ -123,11 +123,13 @@ class AttendanceController extends Controller
 
     public function showAttendanceDetail($id)
     {
-        $attendance = Attendance::with('breakTimes')
+        $attendance = Attendance::with('breakTimes', 'correctionRequests')
             ->where('id', $id)
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
-        return view('user.attendance.detail', ['attendance' => $attendance,]);
+        $isPending = $attendance->hasPendingCorrection();
+
+        return view('user.attendance.detail', ['attendance' => $attendance, 'isPending' => $isPending,]);
     }
 }

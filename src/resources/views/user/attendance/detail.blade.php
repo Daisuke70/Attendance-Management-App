@@ -27,9 +27,17 @@
             <div class="attendance-detail__group">
                 <p class="attendance-detail__label">出勤・退勤</p>
                 <div class="attendance-detail__start-end">
-                    <input type="time" name="start_time" value="{{ \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') }}" class="attendance-detail__input" onclick="this.showPicker && this.showPicker()">
+                    <input type="time" name="start_time"
+                        value="{{ \Carbon\Carbon::parse($attendance->clock_in)->format('H:i') }}"
+                        class="attendance-detail__input"
+                        @if ($isPending) readonly @endif
+                        onclick="this.showPicker && this.showPicker()">
                         <span class="tilde">〜</span>
-                    <input type="time" name="end_time" value="{{ \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') }}" class="attendance-detail__input" onclick="this.showPicker && this.showPicker()">
+                    <input type="time" name="end_time"
+                        value="{{ \Carbon\Carbon::parse($attendance->clock_out)->format('H:i') }}"
+                        class="attendance-detail__input"
+                        @if ($isPending) readonly @endif
+                        onclick="this.showPicker && this.showPicker()">
                     <p class="attendance-detail__error-message">
                         @error('start_time')
                         {{ $message }}
@@ -48,11 +56,19 @@
                     @foreach ($attendance->breakTimes as $i => $break)
                         <div class="attendance-detail__break-time__input">
                             <label class="break-time__label">
-                                <input type="time" name="break_times[{{ $i }}][start_time]" value="{{ \Carbon\Carbon::parse($break->start_time)->format('H:i') }}" class="break-time__input" onclick="this.showPicker && this.showPicker()">
+                                <input type="time" name="break_times[{{ $i }}][start_time]"
+                                    value="{{ \Carbon\Carbon::parse($break->start_time)->format('H:i') }}"
+                                    class="break-time__input"
+                                    @if ($isPending) readonly @endif
+                                    onclick="this.showPicker && this.showPicker()">
                             </label>
                             <span class="break-time__tilde">〜</span>
                             <label class="break-time__label">
-                                <input type="time" name="break_times[{{ $i }}][end_time]" value="{{ \Carbon\Carbon::parse($break->end_time)->format('H:i') }}" class="break-time__input" onclick="this.showPicker && this.showPicker()">
+                                <input type="time" name="break_times[{{ $i }}][end_time]"
+                                    value="{{ \Carbon\Carbon::parse($break->end_time)->format('H:i') }}"
+                                    class="break-time__input"
+                                    @if ($isPending) readonly @endif
+                                    onclick="this.showPicker && this.showPicker()">
                             </label>
                         </div>
                         <p class="attendance-detail__break-time__error-message">
@@ -70,11 +86,17 @@
                     @php $index = $attendance->breakTimes->count(); @endphp
                     <div class="attendance-detail__break-time__input">
                         <label class="break-time__label">
-                            <input type="time" name="break_times[{{ $index }}][start_time]" class="break-time__input" onclick="this.showPicker && this.showPicker()">
+                            <input type="time" name="break_times[{{ $index }}][start_time]"
+                                class="break-time__input"
+                                @if ($isPending) readonly @endif
+                                onclick="this.showPicker && this.showPicker()">
                         </label>
                         <span class="break-time__tilde">〜</span>
                         <label class="break-time__label">
-                            <input type="time" name="break_times[{{ $index }}][end_time]" class="break-time__input" onclick="this.showPicker && this.showPicker()">
+                            <input type="time" name="break_times[{{ $index }}][end_time]"
+                                class="break-time__input"
+                                @if ($isPending) readonly @endif
+                                onclick="this.showPicker && this.showPicker()">
                         </label>
                     </div>
                     <p class="attendance-detail__break-time__error-message">
@@ -91,17 +113,23 @@
             </div>
             <div class="attendance-detail__group-remarks">
                 <p class="attendance-detail__label">備考</p>
-                <textarea name="note" class="attendance-detail__textarea" rows="4"></textarea>
+                <textarea name="note" class="attendance-detail__textarea" rows="4"
+                    @if ($isPending) readonly @endif>{{ $attendance->note }}
+                </textarea>
             </div>
-            <p class="attendance-detail__error-message">
+            <p class="attendance-detail__error-message__note">
                 @error('note')
                 {{ $message }}
                 @enderror
             </p>
         </div>
-        <div class="attendance-detail__button">
-            <button type="submit" class="attendance-detail__button-submit">修正</button>
-        </div>
+        @if (!$isPending)
+            <div class="attendance-detail__button">
+                <button type="submit" class="attendance-detail__button-submit">修正</button>
+            </div>
+        @else
+            <p class="attendance-detail__pending-message">*承認待ちのため修正はできません。</p>
+        @endif
     </form>
 </div>
 @endsection

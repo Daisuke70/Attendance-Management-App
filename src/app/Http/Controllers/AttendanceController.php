@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\BreakTime;
+use App\Models\AttendanceCorrectionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Translation\Translator;
@@ -118,18 +119,22 @@ class AttendanceController extends Controller
             ->get()
             ->keyBy('date');
 
-            return view('user.attendance.index', compact('datesInMonth', 'attendances', 'targetDate'));
+        return view('user.attendance.index', compact('datesInMonth', 'attendances', 'targetDate'));
     }
 
     public function showAttendanceDetail($id)
     {
-        $attendance = Attendance::with('breakTimes', 'correctionRequests')
-            ->where('id', $id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
-
-        $isPending = $attendance->hasPendingCorrection();
-
-        return view('user.attendance.detail', ['attendance' => $attendance, 'isPending' => $isPending,]);
+        $attendance = Attendance::with('breakTimes', 'user')->findOrFail($id);
+    
+        $correctionRequest = AttendanceCorrectionRequest::where('attendance_id', $attendance->id)
+            ->where('user_id', auth()->id())
+            ->where('status', 'pending')
+            ->latest()
+            ->first();
+    
+        $isPending = !is_null($correctionRequest);
+        $correctionBreaks = $correctionRequest ? $correctionRequest->correctionBreakTimes : collect();
+    
+        return view('user.attendance.detail', compact('attendance', 'correctionRequest', 'isPending'));
     }
 }

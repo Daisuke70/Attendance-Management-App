@@ -179,3 +179,23 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-top: 15px;
     letter-spacing: 0.15em;
 }
+
+input.is-readonly,
+textarea.is-readonly {
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: black !important;
+    pointer-events: none;
+}
+
+input.is-readonly:focus,
+textarea.is-readonly:focus {
+    outline: none;
+}
+
+.break-time__label.is-readonly {
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
+}

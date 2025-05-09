@@ -113,8 +113,8 @@
             </div>
             <div class="attendance-detail__group-remarks">
                 <p class="attendance-detail__label">備考</p>
-                <textarea name="note" class="attendance-detail__textarea" rows="4"
-                    @if ($isPending) readonly @endif>{{ $attendance->note }}
+                <textarea name="note" class="attendance-detail__textarea @if($isPending) is-readonly @endif" rows="4"
+                    @if ($isPending) readonly @endif>{{ old('note', $correctionRequest->new_note ?? $attendance->note) }}
                 </textarea>
             </div>
             <p class="attendance-detail__error-message__note">

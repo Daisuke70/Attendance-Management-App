@@ -32,7 +32,7 @@ html, body {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    margin: 50px 0px 0px 0px;
+    margin-top: 50px;
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -75,8 +75,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .attendance-detail__input {
-    height: 32px;
-    width: 85px;
+    height: 20px;
+    width: 80px;
     border: #EBEBEB 1.5px solid;
     border-radius: 5px;
     font-size: 16px;
@@ -225,17 +225,18 @@ textarea.is-readonly:focus {
     .attendance-detail h2 {
         border-left: 7px solid black;
         padding-left: 20px;
-        margin: 65px 810px 0px 0px;
+        font-size: 21px;
+        margin: 40px 510px 0px 0px;
     }
     
     .attendance-detail__table {
-        width: 920px;
+        width: 630px;
         background: white;
         color: #737373;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         border-radius: 10px;
-        margin: 50px 0px 0px 0px;
+        margin-top: 45px;
         border-collapse: collapse;
         border-spacing: 0;
     }
@@ -251,26 +252,27 @@ textarea.is-readonly:focus {
     
     .attendance-detail__name {
         color: black;
-        margin: 32px 0px 22px 30%;
+        margin: 32px 0px 22px 27%;
     }
     
     .attendance-detail__year {
         color: black;
-        margin: 32px 0px 22px 29%;
+        margin: 32px 0px 22px 26%;
     }
     
     .attendance-detail__date {
         color: black;
-        margin: 32px 0px 22px 17%;
+        margin: 32px 0px 22px 18%;
     }
     
     .attendance-detail__start-end {
-        margin: 32px 0px 22px 22%;
+        margin: 32px 0px 22px 16%;
     }
     
     .attendance-detail__error-message {
         color: red;
         margin-top: 10px;
+        font-size: 13px;
     }
     
     input[type="time"]::-webkit-calendar-picker-indicator {
@@ -278,25 +280,25 @@ textarea.is-readonly:focus {
     }
     
     .attendance-detail__input {
-        height: 32px;
-        width: 85px;
+        height: 30px;
+        width: 76px;
         border: #EBEBEB 1.5px solid;
         border-radius: 5px;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         padding-left: 18px;
         font-family: 'Noto Sans JP', sans-serif;
     }
     
     .tilde {
-        margin: 0px 45px 0px 45px;
+        margin: 0px 30px 0px 30px;
         color: black;
     }
     
     .attendance-detail__break-time {
         display: flex;
         flex-direction: column;
-        margin: 32px 0px 22px 28%;;
+        margin: 32px 0px 22px 24%;;
     }
     
     .attendance-detail__break-time__input {
@@ -306,8 +308,8 @@ textarea.is-readonly:focus {
     
     .break-time__label {
         display: inline-block;
-        height: 36px;
-        width: 103px;
+        height: 32px;
+        width: 95px;
         border: #EBEBEB 1.5px solid;
         border-radius: 5px;
         background-color: white;
@@ -318,7 +320,7 @@ textarea.is-readonly:focus {
     .break-time__input {
         width: 100%;
         height: 100%;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         font-family: 'Noto Sans JP', sans-serif;
         padding-left: 17px;
@@ -329,13 +331,14 @@ textarea.is-readonly:focus {
     }
     
     .break-time__tilde {
-        margin: 5px 52px 0px 52px;
+        margin: 5px 36px 0px 36px;
         color: black;
     }
     
     .attendance-detail__break-time__error-message {
         transform: translateY(-20px);
         color: red;
+        font-size: 13px;
     }
     
     .attendance-detail__group-remarks {
@@ -346,15 +349,16 @@ textarea.is-readonly:focus {
         resize: none;
         border: #EBEBEB 1.5px solid;
         border-radius: 5px;
-        margin: 15px 0px 15px 28%;
-        width: 305px;
-        font-size: 16px;
+        margin: 15px 0px 15px 24%;
+        width: 255px;
+        font-size: 13px;
         padding: 10px 10px;
     }
     
     .attendance-detail__error-message__note {
         color: red;
-        transform: translate(37.5%, -10px);
+        font-size: 13px;
+        transform: translate(37%, -8px);
     }
     
     .attendance-detail__button {
@@ -365,12 +369,12 @@ textarea.is-readonly:focus {
     .attendance-detail__button-submit {
         background-color: black;
         color: white;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
-        padding: 8px 40px;
+        padding: 8px 35px;
         border: black;
         border-radius: 6px;
-        margin-top: 120px;
+        margin-top: 75px;
     }
     
     .attendance-detail__pending-message {
@@ -378,7 +382,7 @@ textarea.is-readonly:focus {
         color: 	#F67676;
         justify-content: flex-start;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
         margin-top: 15px;
         letter-spacing: 0.15em;
     }
@@ -386,7 +390,7 @@ textarea.is-readonly:focus {
     input.is-readonly,
     textarea.is-readonly {
         border: none;
-        font-size: 16px;
+        font-size: 14px;
         background-color: transparent;
         color: black !important;
         pointer-events: none;

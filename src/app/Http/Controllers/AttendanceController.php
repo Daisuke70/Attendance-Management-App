@@ -132,9 +132,12 @@ class AttendanceController extends Controller
             ->latest()
             ->first();
     
-        $isPending = !is_null($correctionRequest);
-        $correctionBreaks = $correctionRequest ? $correctionRequest->correctionBreakTimes : collect();
+        $correctionBreaks = $correctionRequest 
+            ? $correctionRequest->correctionBreakTimes->values()
+            : collect();
     
-        return view('user.attendance.detail', compact('attendance', 'correctionRequest', 'isPending'));
+        $isPending = !is_null($correctionRequest);
+    
+        return view('user.attendance.detail', compact('attendance', 'correctionRequest', 'correctionBreaks', 'isPending'));
     }
 }

@@ -25,6 +25,7 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
         }
 
         $attendances = Attendance::where('user_id', $user->id)->inRandomOrder()->limit(10)->get();
+        $fixedDate = Carbon::parse('2025-05-08 18:00:00');
 
         foreach ($attendances as $index => $attendance) {
             $status = $index < 7 ? 'pending' : 'approved';
@@ -36,18 +37,24 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
                 'new_clock_out' => '17:30',
                 'new_note' => $status === 'pending' ? '電車遅延のため（遅延証明書あり）' : '遅刻申請承認済み',
                 'status' => $status,
+                'created_at' => $fixedDate,
+                'updated_at' => $fixedDate,
             ]);
 
             AttendanceCorrectionBreakTime::create([
                 'attendance_correction_request_id' => $correction->id,
                 'new_start_time' => '12:00',
                 'new_end_time' => '12:30',
+                'created_at' => $fixedDate,
+                'updated_at' => $fixedDate,
             ]);
 
             AttendanceCorrectionBreakTime::create([
                 'attendance_correction_request_id' => $correction->id,
                 'new_start_time' => '12:30',
                 'new_end_time' => '13:00',
+                'created_at' => $fixedDate,
+                'updated_at' => $fixedDate,
             ]);
         }
     }

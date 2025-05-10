@@ -38,10 +38,10 @@ class StoreCorrectionRequest extends FormRequest
             'start_time.required' => '出勤時間を入力してください。',
             'end_time.required' => '退勤時間を入力してください。',
             'note.required' => '備考を記入してください。',
-            'start_time.date_format' => '出勤時間の形式が不正です。',
-            'end_time.date_format' => '退勤時間の形式が不正です。',
-            'break_times.*.start_time.date_format' => '休憩開始時間の形式が不正です。',
-            'break_times.*.end_time.date_format' => '休憩終了時間の形式が不正です。',
+            'start_time.date_format' => '出勤時間の形式が正しくありません。',
+            'end_time.date_format' => '退勤時間の形式が正しくありません。',
+            'break_times.*.start_time.date_format' => '休憩開始時間の形式が正しくありません。',
+            'break_times.*.end_time.date_format' => '休憩終了時間の形式が正しくありません。',
         ];
     }
 
@@ -64,6 +64,10 @@ class StoreCorrectionRequest extends FormRequest
                         ($breakEnd && ($breakEnd < $startTime || $breakEnd > $endTime))) {
                         $validator->errors()->add("break_times.{$i}.start_time", '休憩時間が勤務時間外です。');
                         break;
+                    }
+
+                    if ($breakStart && $breakEnd && $breakStart >= $breakEnd) {
+                        $validator->errors()->add("break_times.{$i}.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です。');
                     }
                 }
             }

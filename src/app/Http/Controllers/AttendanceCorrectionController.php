@@ -44,4 +44,10 @@ class AttendanceCorrectionController extends Controller
             return redirect()->back();
         }
     }
+
+    public function listUserRequests()
+    {
+
+        return view('user.request.index');
+    }
 }

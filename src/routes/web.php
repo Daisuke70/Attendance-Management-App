@@ -27,7 +27,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm']);
+    Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('attendances.create');
     Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
     Route::post('/attendance/break-start', [AttendanceController::class, 'startBreak'])->name('attendance.startBreak');
     Route::post('/attendance/break-end', [AttendanceController::class, 'endBreak'])->name('attendance.endBreak');
@@ -36,4 +36,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance/{id}', [AttendanceController::class, 'showAttendanceDetail'])->name('attendances.detail');
     Route::post('/attendance/{id}/corrections', [AttendanceCorrectionController::class, 'submitCorrectionRequest'])
         ->name('attendance.corrections.submit');
+    Route::get('/stamp_correction_request/list', [AttendanceCorrectionController::class, 'listUserRequests'])->name('attendances.request');
 });

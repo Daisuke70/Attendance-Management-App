@@ -35,7 +35,7 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
                 'attendance_id' => $attendance->id,
                 'new_clock_in' => '09:00',
                 'new_clock_out' => '17:30',
-                'new_note' => $status === 'pending' ? '電車遅延のため（遅延証明書あり）' : '遅刻申請承認済み',
+                'new_note' => $status === 'pending' ? '電車遅延のため' : '遅刻申請承認済み',
                 'status' => $status,
                 'created_at' => $fixedDate,
                 'updated_at' => $fixedDate,

@@ -18,7 +18,7 @@
             <div class="header-content__link">
                 <a href="{{ route('attendances.create')}}" class="header-link">勤怠</a>
                 <a href="{{ route('attendances.index')}}" class="header-link">勤怠一覧</a>
-                <a href="{{ route('attendances.request')}}" class="header-link">申請</a>
+                <a href="{{ route('correction-requests.index')}}" class="header-link">申請</a>
                 <form class="header-content__logout-form" action="/logout" method="post">
                     @csrf
                     <button type="submit" class="logout-button">

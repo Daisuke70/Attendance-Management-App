@@ -36,5 +36,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance/{id}', [AttendanceController::class, 'showAttendanceDetail'])->name('attendances.detail');
     Route::post('/attendance/{id}/corrections', [AttendanceCorrectionController::class, 'submitCorrectionRequest'])
         ->name('attendance.corrections.submit');
-    Route::get('/stamp_correction_request/list', [AttendanceCorrectionController::class, 'listUserRequests'])->name('attendances.request');
+    Route::get('/stamp_correction_request/list', [AttendanceCorrectionController::class, 'listUserRequests'])->name('correction-requests.index');
 });

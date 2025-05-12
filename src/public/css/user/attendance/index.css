@@ -93,28 +93,28 @@ html, body {
     border-bottom: 3px solid #E1E1E1;
 }
 
-.attendance-table__head__date {
+.attendance-table__head--date {
     padding: 15px 0px 13px 10px;
 }
 
 
-.attendance-table__head__in {
+.attendance-table__head--in {
     padding: 15px 0px 13px 60px;
 }
 
-.attendance-table__head__out {
+.attendance-table__head--out {
     padding: 15px 0px 13px 25px;
 }
 
-.attendance-table__head__break {
+.attendance-table__head--break {
     padding: 15px 18px 13px 0px;
 }
 
-.attendance-table__head__total {
+.attendance-table__head--total {
     padding: 15px 50px 13px 0px;
 }
 
-.attendance-table__head__detail {
+.attendance-table__head--detail {
     padding: 15px 80px 13px 0px;
 }
 
@@ -127,27 +127,27 @@ html, body {
     font-size: 17px;
 }
 
-.attendance-table__body__date {
+.attendance-table__body--date {
     padding: 15px 0px 13px 60px;
 }
 
-.attendance-table__body__in {
+.attendance-table__body--in {
     padding: 15px 0px 13px 81px;
 }
 
-.attendance-table__body__out {
+.attendance-table__body--out {
     padding: 15px 0px 13px 60px;
 }
 
-.attendance-table__body__break {
+.attendance-table__body--break {
     padding: 15px 0px 13px 45px;
 }
 
-.attendance-table__body__total {
+.attendance-table__body--total {
     padding: 15px 0px 13px 30px;
 }
 
-.attendance-table__body__detail {
+.attendance-table__body--detail {
     padding: 15px 0px 13px 18px;
 }
 
@@ -249,28 +249,28 @@ html, body {
         border-bottom: 3px solid #E1E1E1;
     }
     
-    .attendance-table__head__date {
+    .attendance-table__head--date {
         padding: 10px 0px 10px 18px;
     }
     
     
-    .attendance-table__head__in {
+    .attendance-table__head--in {
         padding: 10px 0px 10px 45px;
     }
     
-    .attendance-table__head__out {
+    .attendance-table__head--out {
         padding: 10px 0px 10px 20px;
     }
     
-    .attendance-table__head__break {
+    .attendance-table__head--break {
         padding: 10px 18px 10px 0px;
     }
     
-    .attendance-table__head__total {
+    .attendance-table__head--total {
         padding: 10px 50px 10px 0px;
     }
     
-    .attendance-table__head__detail {
+    .attendance-table__head--detail {
         padding: 10px 60px 10px 0px;
     }
     
@@ -283,27 +283,27 @@ html, body {
         font-size: 16px;
     }
     
-    .attendance-table__body__date {
+    .attendance-table__body--date {
         padding: 12px 0px 8px 35px;
     }
     
-    .attendance-table__body__in {
+    .attendance-table__body--in {
         padding: 13px 0px 8px 50px;
     }
     
-    .attendance-table__body__out {
+    .attendance-table__body--out {
         padding: 13px 0px 8px 40px;
     }
     
-    .attendance-table__body__break {
+    .attendance-table__body--break {
         padding: 13px 0px 8px 28px;
     }
     
-    .attendance-table__body__total {
+    .attendance-table__body-total {
         padding: 13px 0px 8px 10px;
     }
     
-    .attendance-table__body__detail {
+    .attendance-table__body--detail {
         padding: 13px 0px 8px 8px;
     }
     

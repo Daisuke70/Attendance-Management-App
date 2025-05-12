@@ -33,12 +33,12 @@
     <table class="attendance-table__table">
         <thead class="attendance-table__head">
             <tr class="attendance-table__head-row">
-                <th class="attendance-table__head__date">日付</th>
-                <th class="attendance-table__head__in">出勤</th>
-                <th class="attendance-table__head__out">退勤</th>
-                <th class="attendance-table__head__break">休憩</th>
-                <th class="attendance-table__head__total">合計</th>
-                <th class="attendance-table__head__detail">詳細</th>
+                <th class="attendance-table__head--date">日付</th>
+                <th class="attendance-table__head--in">出勤</th>
+                <th class="attendance-table__head--out">退勤</th>
+                <th class="attendance-table__head--break">休憩</th>
+                <th class="attendance-table__head--total">合計</th>
+                <th class="attendance-table__head--detail">詳細</th>
             </tr>
         </thead>
         <tbody class="attendance-table__body">
@@ -59,12 +59,12 @@
                         : '';
                 @endphp
                 <tr class="attendance-table__body-row">
-                    <td class="attendance-table__body__date">{{ $date->format('m/d') }}({{ $weekday }})</td>
-                    <td class="attendance-table__body__in">{{ $clockIn }}</td>
-                    <td class="attendance-table__body__out">{{ $clockOut }}</td>
-                    <td class="attendance-table__body__break">{{ $breakTime }}</td>
-                    <td class="attendance-table__body__total">{{ $workTime }}</td>
-                    <td class="attendance-table__body__detail">
+                    <td class="attendance-table__body--date">{{ $date->format('m/d') }}({{ $weekday }})</td>
+                    <td class="attendance-table__body--in">{{ $clockIn }}</td>
+                    <td class="attendance-table__body--out">{{ $clockOut }}</td>
+                    <td class="attendance-table__body--break">{{ $breakTime }}</td>
+                    <td class="attendance-table__body--total">{{ $workTime }}</td>
+                    <td class="attendance-table__body--detail">
                         @if($attendance)
                             <a href="{{ route('attendances.detail', $attendance->id) }}" class="detail-link">詳細</a>
                         @endif

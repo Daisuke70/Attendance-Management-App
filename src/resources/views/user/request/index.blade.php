@@ -37,7 +37,7 @@
                     <td class="request-table__body-td">{{ $request->user->name }}</td>
                     <td class="request-table__body-td">{{ $request->attendance->date ?? '-' }}</td>
                     <td class="request-table__body-td">{{ $request->new_note }}</td>
-                    <td class="request-table__body-td">{{ $request->created_at->format('Y-m-d H:i') }}</td>
+                    <td class="request-table__body-td">{{ $request->created_at->format('Y/m/d')}}</td>
                     <td class="request-table__body--detail">
                         <a href="{{ route('attendances.detail', $request->attendance->id) }}" class="detail-link">詳細</a>
                     </td>

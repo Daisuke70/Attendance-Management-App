@@ -42,11 +42,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        try {
-            $request->authenticate();
-        } catch (ValidationException $e) {
-            return redirect()->back();
-        }
+        $request->authenticate();
     
         $user = Auth::user();
     

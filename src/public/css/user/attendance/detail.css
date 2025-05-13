@@ -180,10 +180,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     letter-spacing: 0.15em;
 }
 
-input.is-readonly,
+input.is-readonly {
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: black !important;
+    pointer-events: none;
+}
+
 textarea.is-readonly {
     border: none;
     font-size: 16px;
+    padding-top: 25px;
     background-color: transparent;
     color: black !important;
     pointer-events: none;

@@ -37,7 +37,7 @@
 
                     <input type="time" name="start_time"
                         value="{{ $clockIn ? \Carbon\Carbon::parse($clockIn)->format('H:i') : '' }}"
-                        class="attendance-detail__input"
+                        class="attendance-detail__input @if($isPending) is-readonly @endif"
                         @if ($isPending) readonly @endif
                         onclick="this.showPicker && this.showPicker()">
 
@@ -45,7 +45,7 @@
 
                     <input type="time" name="end_time"
                         value="{{ $clockOut ? \Carbon\Carbon::parse($clockOut)->format('H:i') : '' }}"
-                        class="attendance-detail__input"
+                        class="attendance-detail__input @if($isPending) is-readonly @endif"
                         @if ($isPending) readonly @endif
                         onclick="this.showPicker && this.showPicker()">
                     <p class="attendance-detail__error-message">
@@ -88,7 +88,7 @@
                         @endphp
 
                         <div class="attendance-detail__break-time__input">
-                            <label class="break-time__label">
+                            <label class="break-time__label @if($isPending) is-readonly @endif">
                                 <input type="time" name="break_times[{{ $i }}][start_time]"
                                     value="{{ $start ? \Carbon\Carbon::parse($start)->format('H:i') : '' }}"
                                     class="break-time__input"
@@ -96,7 +96,7 @@
                                     onclick="this.showPicker && this.showPicker()">
                             </label>
                             <span class="break-time__tilde">〜</span>
-                            <label class="break-time__label">
+                            <label class="break-time__label  @if($isPending) is-readonly @endif">
                                 <input type="time" name="break_times[{{ $i }}][end_time]"
                                     value="{{ $end ? \Carbon\Carbon::parse($end)->format('H:i') : '' }}"
                                     class="break-time__input"

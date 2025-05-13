@@ -16,7 +16,7 @@
         </div>
 
         <div class="register-form__inner">
-            <form class="register-form__form" action="/register" method="post">
+            <form action="{{ route('user.register') }}" class="register-form__form" method="post">
                 @csrf
                 <div class="register-form__group">
                     <label class="register-form__label" for="name">名前</label>
@@ -53,7 +53,7 @@
                     <input class="register-form__submit" type="submit" value="登録する">
                 </div>
             </form>
-            <a href="/login" class="login">ログインはこちら</a>
+            <a href="{{ route('show.login')}}" class="login">ログインはこちら</a>
         </div>
     </div>
 </body>

@@ -17,7 +17,7 @@
         </div>
 
         <div class="login-form__inner">
-            <form class="login-form__form" action="/login" method="post">
+            <form action="{{ route('user.login') }}"class="login-form__form" method="post">
                 @csrf
                 <div class="login-form__group">
                     <label class="login-form__label" for="email">メールアドレス</label>
@@ -46,7 +46,7 @@
                     {{ $errors->first('role') }}
                 </div>
             @endif
-            <a href="/register" class="login-form__register">会員登録はこちら</a>
+            <a href="{{ route('show.register')}}" class="login-form__register">会員登録はこちら</a>
         </div>
     </div>
 </body>

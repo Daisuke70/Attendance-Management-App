@@ -17,16 +17,16 @@ use App\Http\Controllers\AttendanceCorrectionController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'showRegisterForm']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('show.register');
+Route::post('/register', [AuthController::class, 'register'])->name('user.register');
 Route::get('/email/verify', [VerificationController::class, 'showVerificationNotice']);
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])->name('verification.verify');
 Route::post('/email/resend', [VerificationController::class, 'resendVerificationEmail'])->name('verification.resend');
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('show.login');
+Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('attendances.create');
     Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
     Route::post('/attendance/break-start', [AttendanceController::class, 'startBreak'])->name('attendance.startBreak');

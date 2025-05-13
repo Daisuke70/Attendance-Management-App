@@ -1,4 +1,3 @@
-
 @extends('user.layouts.app')
 
 @section('css')
@@ -18,10 +17,6 @@
     <p class="register-attendance__time" id="current-time">
         {{ $now->format('H:i') }}
     </p>
-
-    @if (session('message'))
-        <p class="message">{{ session('message') }}</p>
-    @endif
 
     @if ($attendance->status === '勤務外')
         <form action="{{ route('attendance.clockIn') }}" method="POST">
@@ -48,6 +43,8 @@
             <input type="hidden" name="date" value="{{ $now->toDateString() }}">
             <button type="submit" class="register-button__end-break">休憩戻</button>
         </form>
+    @elseif ($attendance->status === '退勤済')
+        <p class="register-attendance__message">お疲れ様でした。</p>
     @endif
 </div>
 

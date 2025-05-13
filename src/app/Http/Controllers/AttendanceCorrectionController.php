@@ -48,15 +48,18 @@ class AttendanceCorrectionController extends Controller
     public function listUserRequests(Request $request)
     {
         $status = $request->query('status');
-
-        $query = AttendanceCorrectionRequest::with(['user', 'attendance']);
-
+    
+        $query = AttendanceCorrectionRequest::query()
+            ->join('attendances', 'attendance_correction_requests.attendance_id', '=', 'attendances.id')
+            ->with(['user', 'attendance'])
+            ->select('attendance_correction_requests.*');
+    
         if (in_array($status, ['pending', 'approved'])) {
-            $query->where('status', $status);
+            $query->where('attendance_correction_requests.status', $status);
         }
-
-        $requests = $query->latest('created_at')->get();
-
+    
+        $requests = $query->orderBy('attendances.date', 'asc')->get();
+    
         return view('user.request.index', compact('requests', 'status'));
     }
 }

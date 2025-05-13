@@ -70,7 +70,6 @@ class AttendanceController extends Controller
         return redirect()->back();
     }
 
-
     public function clockOut()
     {
         $attendance = $this->getTodayAttendance();
@@ -81,7 +80,7 @@ class AttendanceController extends Controller
             $attendance->save();
         }
 
-        return redirect()->back()->with('message', 'お疲れ様でした。');
+        return redirect()->back();
     }
 
     private function getTodayAttendance()

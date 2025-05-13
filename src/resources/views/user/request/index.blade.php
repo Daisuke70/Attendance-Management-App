@@ -20,7 +20,7 @@
     </div>
 
     <div class="request-table__tabs-border"></div>
-    
+
     <table class="request-table__table">
         <thead class="request-table__head">
             <tr class="request-table__head-row">

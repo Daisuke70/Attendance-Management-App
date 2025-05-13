@@ -19,6 +19,8 @@
         </a>
     </div>
 
+    <div class="request-table__tabs-border"></div>
+    
     <table class="request-table__table">
         <thead class="request-table__head">
             <tr class="request-table__head-row">
@@ -33,12 +35,14 @@
         <tbody class="request-table__body">
             @foreach ($requests as $request)
                 <tr class="request-table__body-row">
-                    <td class="request-table__body--condition">{{ $request->status === 'pending' ? '承認待ち' : '承認済み' }}</td>
-                    <td class="request-table__body-td">{{ $request->user->name }}</td>
-                    <td class="request-table__body-td">{{ $request->attendance->date ?? '-' }}</td>
-                    <td class="request-table__body-td">{{ $request->new_note }}</td>
-                    <td class="request-table__body-td">{{ $request->created_at->format('Y/m/d')}}</td>
-                    <td class="request-table__body--detail">
+                    <td class="request-table__condition">{{ $request->status === 'pending' ? '承認待ち' : '承認済み' }}</td>
+                    <td class="request-table__user-name">{{ $request->user->name }}</td>
+                    <td class="request-table__attendance-date">
+                        {{ optional($request->attendance)->date ? \Carbon\Carbon::parse($request->attendance->date)->format('Y/m/d') : '-' }}
+                    </td>
+                    <td class="request-table__note">{{ $request->new_note }}</td>
+                    <td class="request-table__request-date">{{ $request->created_at->format('Y/m/d') }}</td>
+                    <td class="request-table__detail">
                         <a href="{{ route('attendances.detail', $request->attendance->id) }}" class="detail-link">詳細</a>
                     </td>
                 </tr>

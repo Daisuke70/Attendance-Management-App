@@ -120,9 +120,6 @@ html, body {
 
 .attendance-table__body-row {
     border-bottom: 2px solid #E1E1E1;
-}
-
-.attendance-table__body-row {
     font-weight: bold;
     font-size: 17px;
 }
@@ -276,9 +273,6 @@ html, body {
     
     .attendance-table__body-row {
         border-bottom: 2px solid #E1E1E1;
-    }
-    
-    .attendance-table__body-row {
         font-weight: bold;
         font-size: 16px;
     }

@@ -26,8 +26,33 @@ html, body {
 }
 
 .request-table__tabs {
-    display: flex;
-    justify-content: flex-start;
+    margin: 60px 580px 0px 0px;
+}
+
+.request-table__tabs-pending {
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+    letter-spacing: 0.15em;
+    margin-right: 85px;
+}
+
+.request-table__tabs-approved {
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+    letter-spacing: 0.15em;
+}
+
+.request-table__tabs-pending.active,
+.request-table__tabs-approved.active {
+    font-weight: bold;
+}
+
+.request-table__tabs-border {
+    border-bottom: 1.5px solid black;
+    margin-top: 15px;
+    width: 940px;
 }
 
 .request-table__table {
@@ -40,12 +65,48 @@ html, body {
     border-collapse: collapse;
     table-layout: fixed;
     border-spacing: 0;
+    letter-spacing: 0.1em;
 }
 
 .request-table__head th{
     border-bottom: 3px solid #E1E1E1;
+    padding-right: 60px;
 }
 
 .request-table__head--condition {
-    padding: 15px 10px 13px 0px;
+    padding: 15px 0px 13px 50px;
+}
+
+.request-table__body-row {
+    border-bottom: 2px solid #E1E1E1;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.request-table__condition {
+    padding: 15px 0px 13px 36px;
+}
+
+.request-table__user-name {
+    padding-left: 10px;
+}
+
+.request-table__attendance-date {
+    letter-spacing: 0em;
+    padding-left: 8px;
+}
+
+.request-table__note {
+    padding-left: 7px;
+}
+
+.request-table__request-date {
+    letter-spacing: 0em;
+    padding-left: 8px;
+}
+
+.detail-link {
+    text-decoration: none;
+    color: black;
+    padding-left: 28px;
 }

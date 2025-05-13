@@ -24,7 +24,12 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
             return;
         }
 
-        $attendances = Attendance::where('user_id', $user->id)->inRandomOrder()->limit(10)->get();
+        $attendances = Attendance::where('user_id', $user->id)
+            ->inRandomOrder()
+            ->limit(10)
+            ->get()
+            ->sortBy('id')
+            ->values();
         $fixedDate = Carbon::parse('2025-05-08 18:00:00');
 
         foreach ($attendances as $index => $attendance) {

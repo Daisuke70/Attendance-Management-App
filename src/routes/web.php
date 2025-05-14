@@ -27,7 +27,7 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('show.login
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showAdminLoginForm']);
-Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login');
+Route::post('/admin/login', [AdminAuthController::class, 'adminLogin'])->name('admin.login');
 
 
 

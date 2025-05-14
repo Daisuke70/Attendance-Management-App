@@ -79,11 +79,19 @@ body {
     margin-top: 20px;
     font-size: 20px;
     color: red;
+    text-align: center;
 }
 
-.admin-login-form__error-message {
-    margin-top: 5px;
+.admin-login-form__error-message[data-field="email"] {
+    margin: 5px 340px 0px 0px;
     color: red;
+    text-align: center;
+}
+
+.admin-login-form__error-message[data-field="password"] {
+    margin: 5px 370px 0px 0px;
+    color: red;
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {

@@ -22,22 +22,22 @@
                 <div class="admin-login-form__group">
                     <label for="email" class="admin-login-form__label">メールアドレス</label>
                     <input type="email" name="email" id="email" class="admin-login-form__input" value="{{ old('email') }}">
-                    <p class="admin-login-form__error-message">
-                        @error('email')
-                        {{ $message }}
-                        @enderror
-                    </p>
                 </div>
+                <p class="admin-login-form__error-message" data-field="email">
+                    @error('email')
+                    {{ $message }}
+                    @enderror
+                </p>
 
                 <div class="admin-login-form__group">
                     <label for="password" class="admin-login-form__label">パスワード</label>
                     <input type="password" name="password" id="password" class="admin-login-form__input">
-                    <p class="admin-login-form__error-message">
-                        @error('password')
-                        {{ $message }}
-                        @enderror
-                    </p>
                 </div>
+                <p class="admin-login-form__error-message" data-field="password">
+                    @error('password')
+                    {{ $message }}
+                    @enderror
+                </p>
 
                 <div class="admin-login-form__button">
                     <input type="submit" class="admin-login-form__submit" value="管理者ログインする">

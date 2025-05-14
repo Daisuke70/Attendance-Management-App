@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class AdminAuthController extends Controller
 {
-    //
+    public function showAdminLoginForm()
+    {
+        return view('admin.auth.login');
+    }
 }

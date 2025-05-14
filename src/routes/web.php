@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceCorrectionController;
+use App\Http\Controllers\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,11 @@ Route::post('/email/resend', [VerificationController::class, 'resendVerification
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('show.login');
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');
 
+Route::get('/admin/login', [AdminAuthController::class, 'showAdminLoginForm']);
+Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login');
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('attendances.create');
@@ -37,4 +43,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/{id}/corrections', [AttendanceCorrectionController::class, 'submitCorrectionRequest'])
         ->name('attendance.corrections.submit');
     Route::get('/stamp_correction_request/list', [AttendanceCorrectionController::class, 'listUserRequests'])->name('correction-requests.index');
+});
+
+Route::middleware(['auth'])->group(function () {
+
 });

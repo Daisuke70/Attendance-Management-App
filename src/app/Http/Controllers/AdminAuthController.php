@@ -26,7 +26,7 @@ class AdminAuthController extends Controller
                 ->withInput();
         }
 
-        return redirect('/attendance');
+        return redirect('/admin/attendance/list');
     }
 
 

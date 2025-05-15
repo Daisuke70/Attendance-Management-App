@@ -23,7 +23,7 @@ body {
 .admin-login-form__title {
     text-align: center;
     font-size: 20px;
-    padding: 80px 0px 10px 0px;
+    padding: 80px 0px 0px 0px;
 }
 
 .admin-login-form__inner {
@@ -43,7 +43,7 @@ body {
 
 .admin-login-form__label {
     font-weight: bold;
-    margin: 10px 10px 0px 0px;
+    margin: 65px 10px 0px 0px;
     text-align: left;
     width: 100%;
 }
@@ -59,9 +59,17 @@ body {
     padding-left: 10px;
 }
 
+.admin-login-form__error-message {
+    color: red;
+    font-size: 17px;
+    margin-top: 5px;
+    width: 580px;
+    text-align: left;
+}
+
 .admin-login-form__button {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .admin-login-form__submit{
@@ -78,18 +86,6 @@ body {
 .admin-login-form__alert {
     margin-top: 20px;
     font-size: 20px;
-    color: red;
-    text-align: center;
-}
-
-.admin-login-form__error-message[data-field="email"] {
-    margin: 5px 340px 0px 0px;
-    color: red;
-    text-align: center;
-}
-
-.admin-login-form__error-message[data-field="password"] {
-    margin: 5px 370px 0px 0px;
     color: red;
     text-align: center;
 }
@@ -120,7 +116,7 @@ body {
     .admin-login-form__title {
         text-align: center;
         font-size: 16px;
-        padding: 80px 0px 10px 0px;
+        padding: 80px 0px 0px 0px;
     }
     
     .admin-login-form__inner {
@@ -140,7 +136,7 @@ body {
     
     .admin-login-form__label {
         font-weight: bold;
-        margin: 10px 0px 0px 5px;
+        margin: 40px 0px 0px 5px;
         text-align: left;
         width: 100%;
     }
@@ -156,10 +152,18 @@ body {
         margin-top: 5px;
         padding-left: 10px;
     }
+
+    .admin-login-form__error-message {
+        color: red;
+        font-size: 16px;
+        margin-top: 5px;
+        width: 470px;
+        text-align: left;
+    }
     
     .admin-login-form__button {
         text-align: center;
-        margin-top: 70px;
+        margin-top: 65px;
     }
     
     .admin-login-form__submit {
@@ -173,8 +177,10 @@ body {
         border-radius: 3px;
     }
     
-    .admin-login-form__error-message {
-        margin-top: 5px;
+    .admin-login-form__alert {
+        margin-top: 15px;
+        font-size: 20px;
         color: red;
+        text-align: center;
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', '勤怠管理アプリ')</title>
+    <title>@yield('title', '勤怠管理アプリ（管理者）')</title>
     <link rel="stylesheet" href="{{ asset('css/admin/common.css')}}">
     @yield('css')
 </head>
@@ -14,12 +14,12 @@
         <div class="header-content">
             <div class="header-content__logo">
                 <img src="{{ asset('/images/logo.svg') }}" alt="ロゴの画像" id="title" class="logo-img">
-            </div>x
+            </div>
             <div class="header-content__link">
-                <a href="{{ route('attendances.create')}}" class="header-link">勤怠</a>
-                <a href="{{ route('attendances.index')}}" class="header-link">勤怠一覧</a>
-                <a href="{{ route('correction-requests.index')}}" class="header-link">申請</a>
-                <form action="{{ route('logout') }}" class="header-content__logout-form" method="post">
+                <a href="{{ route('admin.attendances.index')}}" class="header-link">勤怠一覧</a>
+                <a href="{{ route('admin.staffs.index')}}" class="header-link">スタッフ一覧</a>
+                <a href="{{ route('admin.correction_requests.index')}}" class="header-link">申請一覧</a>
+                <form action="{{ route('admin.logout') }}" class="header-content__logout-form" method="post">
                     @csrf
                     <button type="submit" class="logout-button">
                         <span class="logout">ログアウト</span>

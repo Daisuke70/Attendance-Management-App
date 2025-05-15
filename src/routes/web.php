@@ -6,6 +6,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceCorrectionController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminAttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-
+    Route::post('admin/logout', [AdminAuthController::class, 'admin.logout'])->name('admin.logout');
+    Route::get('admin/attendance/list', [AdminAttendanceController::class, 'listAllAttendances'])->name('admin.attendances.index');
+    Route::get('/admin/staff/list', [AdminStaffController::class, 'index'])->name('admin.staffs.index');
+    Route::get('/stamp_correction_request/list', [AdminCorrectionRequestController::class, 'index'])->name('admin.correction_requests.index');
 });

@@ -29,7 +29,7 @@ class AdminAuthController extends Controller
         return redirect('/admin/attendance/list');
     }
 
-    public function logout(Request $request)
+    public function adminLogout(Request $request)
     {
         Auth::guard('admin')->logout();
         $request->session()->invalidate();

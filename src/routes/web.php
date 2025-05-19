@@ -36,10 +36,10 @@ Route::post('/admin/login', [AdminAuthController::class, 'adminLogin'])->name('a
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('attendances.create');
-    Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
-    Route::post('/attendance/break-start', [AttendanceController::class, 'startBreak'])->name('attendance.startBreak');
-    Route::post('/attendance/break-end', [AttendanceController::class, 'endBreak'])->name('attendance.endBreak');
-    Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
+    Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendances.clockIn');
+    Route::post('/attendance/break-start', [AttendanceController::class, 'startBreak'])->name('attendances.startBreak');
+    Route::post('/attendance/break-end', [AttendanceController::class, 'endBreak'])->name('attendances.endBreak');
+    Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendances.clockOut');
     Route::get('/attendance/list', [AttendanceController::class, 'listUserAttendances'])->name('attendances.index');
     Route::get('/attendance/{id}', [AttendanceController::class, 'showAttendanceDetail'])->name('attendances.detail');
     Route::post('/attendance/{id}/corrections', [AttendanceCorrectionController::class, 'submitCorrectionRequest'])
@@ -50,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/admin/logout', [AdminAuthController::class, 'adminLogout'])->name('admin.logout');
     Route::get('/admin/attendance/list', [AdminAttendanceController::class, 'listAllAttendances'])->name('admin.attendances.index');
+    Route::get('/admin/attendance/{id}', [AdminAttendanceController::class, 'showStaffAttendance'])->name('admin.attendances.detail');
     Route::get('/admin/staff/list', [AdminStaffController::class, 'listAllStaff'])->name('admin.staffs.index');
     Route::get('/admin/stamp_correction_request/list', [AdminAttendanceCorrectionController::class, 'listAllCorrectionRequests'])->name('admin.correction_requests.index');
 });

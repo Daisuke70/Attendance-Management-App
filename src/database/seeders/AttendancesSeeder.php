@@ -12,39 +12,52 @@ class AttendancesSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::where('email', 'test@user.com')->first();
-        if (!$user) {
-            $this->command->warn('ユーザーが見つかりませんでした。');
-            return;
-        }
+        $emails = [
+            'test@user.com',
+            'test@user2.com',
+            'test@user3.com',
+            'test@user4.com',
+            'test@user5.com',
+        ];
 
-        $startDate = Carbon::parse('2025-03-01');
-        $endDate = Carbon::parse('2025-05-08');
+        $users = User::whereIn('email', $emails)->get()->keyBy('email');
 
-        while ($startDate->lte($endDate)) {
-            if ($startDate->isWeekday()) {
-                $attendance = Attendance::factory()->create([
-                    'user_id' => $user->id,
-                    'date' => $startDate->toDateString(),
-                    'clock_in' => '08:30',
-                    'clock_out' => '17:30',
-                    'status' => '退勤済み',
-                ]);
+        foreach ($emails as $email) {
+            $user = $users->get($email);
 
-                BreakTime::factory()->create([
-                    'attendance_id' => $attendance->id,
-                    'start_time' => '12:00',
-                    'end_time' => '12:30',
-                ]);
-
-                BreakTime::factory()->create([
-                    'attendance_id' => $attendance->id,
-                    'start_time' => '12:30',
-                    'end_time' => '13:00',
-                ]);
+            if (!$user) {
+                $this->command->warn("ユーザー {$email} が見つかりませんでした。");
+                continue;
             }
 
-            $startDate->addDay();
+            $startDate = Carbon::parse('2025-03-01');
+            $endDate = Carbon::parse('2025-05-08');
+
+            while ($startDate->lte($endDate)) {
+                if ($startDate->isWeekday()) {
+                    $attendance = Attendance::factory()->create([
+                        'user_id' => $user->id,
+                        'date' => $startDate->toDateString(),
+                        'clock_in' => '08:30',
+                        'clock_out' => '17:30',
+                        'status' => '退勤済み',
+                    ]);
+
+                    BreakTime::factory()->create([
+                        'attendance_id' => $attendance->id,
+                        'start_time' => '12:00',
+                        'end_time' => '12:30',
+                    ]);
+
+                    BreakTime::factory()->create([
+                        'attendance_id' => $attendance->id,
+                        'start_time' => '12:30',
+                        'end_time' => '13:00',
+                    ]);
+                }
+
+                $startDate->addDay();
+            }
         }
     }
 }

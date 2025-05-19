@@ -10,11 +10,11 @@
     <h2> {{ $date->format('Y年n月j日') }}の勤怠 </h2>
 
     <div class="date-nav">
-        <a href="{{ route('admin.attendance.daily', ['date' => $prevDate]) }}">← 前日</a>
+        <a href="{{ route('admin.attendances.index', ['date' => $prevDate]) }}">← 前日</a>
         <span class="current-date">
             📅 {{ $date->format('Y/m/d') }}
         </span>
-        <a href="{{ route('admin.attendance.daily', ['date' => $nextDate]) }}">翌日 →</a>
+        <a href="{{ route('admin.attendances.index', ['date' => $nextDate]) }}">翌日 →</a>
     </div>
 
     <table class="attendance-table">
@@ -36,7 +36,7 @@
                     <td>{{ $attendance->clock_out ?? '' }}</td>
                     <td>{{ $attendance->total_break ?? '' }}</td>
                     <td>{{ $attendance->work_time ?? '' }}</td>
-                    <td><a href="{{ route('admin.attendance.show', $attendance->id) }}">詳細</a></td>
+                    <td><a href="{{ route('admin.attendances.detail', $attendance->id) }}">詳細</a></td>
                 </tr>
             @endforeach
         </tbody>

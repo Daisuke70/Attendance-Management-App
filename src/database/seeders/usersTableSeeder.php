@@ -19,7 +19,43 @@ class usersTableSeeder extends Seeder
             User::factory()->create([
                 'name' => 'ユーザー太郎',
                 'email' => 'test@user.com',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('11111111'),
+                'role' => 'user',
+            ]);
+        }
+
+        if (!User::where('email', 'test@user2.com')->exists()) {
+            User::factory()->create([
+                'name' => '山田太郎',
+                'email' => 'test@user2.com',
+                'password' => Hash::make('22222222'),
+                'role' => 'user',
+            ]);
+        }
+
+        if (!User::where('email', 'test@user3.com')->exists()) {
+            User::factory()->create([
+                'name' => '西怜奈',
+                'email' => 'test@user3.com',
+                'password' => Hash::make('33333333'),
+                'role' => 'user',
+            ]);
+        }
+
+        if (!User::where('email', 'test@user4.com')->exists()) {
+            User::factory()->create([
+                'name' => '増田一世',
+                'email' => 'test@user4.com',
+                'password' => Hash::make('44444444'),
+                'role' => 'user',
+            ]);
+        }
+
+        if (!User::where('email', 'test@user5.com')->exists()) {
+            User::factory()->create([
+                'name' => '山本敬吉',
+                'email' => 'test@user5.com',
+                'password' => Hash::make('55555555'),
                 'role' => 'user',
             ]);
         }

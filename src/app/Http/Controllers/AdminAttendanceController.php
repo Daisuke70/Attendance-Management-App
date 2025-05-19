@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateAttendanceByAdminRequest;
 use App\Models\Attendance;
 use App\Models\User;
+use App\Models\BreakTime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
 class AdminAttendanceController extends Controller
@@ -43,5 +46,39 @@ class AdminAttendanceController extends Controller
             'prevDate' => $date->copy()->subDay()->toDateString(),
             'nextDate' => $date->copy()->addDay()->toDateString(),
         ]);
+    }
+
+    public function showStaffAttendance($id)
+    {
+        $attendance = Attendance::with('breakTimes', 'user')->findOrFail($id);
+        return view('admin.attendance.detail', compact('attendance'));
+    }
+
+    public function updateStaffAttendance(UpdateAttendanceByAdminRequest $request, $id)
+    {
+        DB::beginTransaction();
+    
+        try {
+            $attendance = Attendance::findOrFail($id);
+            $attendance->clock_in = $request->input('start_time');
+            $attendance->clock_out = $request->input('end_time');
+            $attendance->note = $request->input('note');
+            $attendance->save();
+            $attendance->breakTimes()->delete();
+    
+            foreach ($request->input('break_times', []) as $break) {
+                BreakTime::create([
+                    'attendance_id' => $attendance->id,
+                    'start_time' => $break['start_time'],
+                    'end_time' => $break['end_time'],
+                ]);
+            }
+    
+            DB::commit();
+            return redirect()->route('attendance.detail', $attendance->id)->with('success', '勤怠情報を更新しました。');
+    
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
     }
 }

@@ -64,7 +64,7 @@ class usersTableSeeder extends Seeder
             User::factory()->create([
                 'name' => '管理太郎',
                 'email' => 'test@admin.com',
-                'password' => Hash::make('87654321'),
+                'password' => Hash::make('12345678'),
                 'role' => 'admin',
             ]);
         }

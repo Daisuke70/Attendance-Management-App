@@ -105,12 +105,12 @@
                             </label>
                         </div>
                         <p class="attendance-detail__break-time__error-message">
-                            @error("break_times.$i.start_time")
+                            @error('break_times.$i.start_time')
                             {{ $message }}
                             @enderror
                         </p>
                         <p class="attendance-detail__break-time__error-message">
-                            @error("break_times.$i.end_time")
+                            @error('break_times.$i.end_time')
                             {{ $message }}
                             @enderror
                         </p>

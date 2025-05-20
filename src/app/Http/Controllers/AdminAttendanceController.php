@@ -75,10 +75,11 @@ class AdminAttendanceController extends Controller
             }
     
             DB::commit();
-            return redirect()->route('attendance.detail', $attendance->id)->with('success', '勤怠情報を更新しました。');
+            return redirect()->route('admin.attendances.index');
     
         } catch (\Exception $e) {
             DB::rollBack();
+            return back()->withErrors('更新処理に失敗しました。')->withInput();
         }
     }
 }

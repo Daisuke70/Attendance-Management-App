@@ -1,0 +1,102 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #F0EFF2;
+    min-height: 100%;
+}
+
+.content {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.admin-attendance-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.admin-attendance-detail h2 {
+    border-left: 7px solid black;
+    padding-left: 20px;
+    margin: 65px 780px 0px 0px;
+}
+
+.admin-attendance-detail__table {
+    width: 910px;
+    background: white;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 50px 0px 100px 0px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0;
+    letter-spacing: 0.15em;
+    font-weight: bold;
+}
+
+.admin-attendance-detail__row {
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.admin-attendance-detail__th--name {
+    padding: 40px 140px 35px 15px;
+    color: #737373;
+}
+
+.admin-attendance-detail__td--name {
+    padding: 10px 0px 0px 70px;
+}
+
+.admin-attendance-detail__th--date {
+    padding: 40px 140px 35px 15px;
+    color: #737373;
+}
+
+.admin-attendance-detail__td--year {
+    padding: 10px 0px 0px 60px;
+}
+
+.admin-attendance-detail__td--date {
+    padding-top: 10px;
+}
+
+.admin-attendance-detail__th--start-end {
+    padding: 40px 78px 35px 15px;
+    color: #737373;
+}
+
+.admin-attendance-detail__td--start-end {
+    transform: translate(40px,3px);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: nowrap;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
+}
+
+.admin-attendance-detail__input {
+    height: 35px;
+    width: 95px;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 25px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+
+.tilde {
+    margin: 0px 5px 0px 5px;
+    color: black;
+}

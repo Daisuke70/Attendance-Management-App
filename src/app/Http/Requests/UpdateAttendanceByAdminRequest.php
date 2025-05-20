@@ -54,4 +54,39 @@ class UpdateAttendanceByAdminRequest extends FormRequest
             'note.required' => '備考を記入してください。',
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $breakTimes = $this->input('break_times', []);
+
+            $ranges = [];
+    
+            foreach ($breakTimes as $index => $break) {
+                $start = $break['start_time'] ?? null;
+                $end = $break['end_time'] ?? null;
+    
+                if (!$start || !$end) {
+                    continue;
+                }
+    
+                try {
+                    $startMinutes = \Carbon\Carbon::parse($start)->hour * 60 + \Carbon\Carbon::parse($start)->minute;
+                    $endMinutes = \Carbon\Carbon::parse($end)->hour * 60 + \Carbon\Carbon::parse($end)->minute;
+    
+                    foreach ($ranges as $range) {
+                        if (!($endMinutes <= $range['start'] || $startMinutes >= $range['end'])) {
+                            $validator->errors()->add("break_times.$index.start_time", '休憩時間が他の休憩と重複しています。');
+                            break;
+                        }
+                    }
+    
+                    $ranges[] = ['start' => $startMinutes, 'end' => $endMinutes];
+    
+                } catch (\Exception $e) {
+
+                }
+            }
+        });
+    }
 }

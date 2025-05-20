@@ -41,10 +41,10 @@
                     </div>
 
                     @if ($errors->has('start_time'))
-                        <p class="form-error-message">{{ $errors->first('start_time') }}</p>
+                        <p class="form-error-message__start-time">{{ $errors->first('start_time') }}</p>
                     @endif
                     @if ($errors->has('end_time'))
-                        <p class="form-error-message">{{ $errors->first('end_time') }}</p>
+                        <p class="form-error-message__end-time">{{ $errors->first('end_time') }}</p>
                     @endif
                 </td>
             </tr>
@@ -79,19 +79,19 @@
 
                         <div class="admin-attendance-table__break-time__group">
                             <input type="time" name="break_times[{{ $i }}][start_time]"
-                                class="admin-attendance-detail__input" value="{{ $startTime }}"
+                                class="admin-attendance-detail__input--break" value="{{ $startTime }}"
                                 onclick="this.showPicker && this.showPicker()"
                                 >
-                            〜
+                            <span class="tilde">〜</span>
                             <input type="time" name="break_times[{{ $i }}][end_time]"
-                                class="admin-attendance-detail__input" value="{{ $endTime }}"
+                                class="admin-attendance-detail__input--break" value="{{ $endTime }}"
                                 onclick="this.showPicker && this.showPicker()"
                                 >
                             @if ($errors->has("break_times.$i.start_time"))
-                                <p class="form-error-message">{{ $errors->first("break_times.$i.start_time") }}</p>
+                                <p class="form-error-message__break">{{ $errors->first("break_times.$i.start_time") }}</p>
                             @endif
                             @if ($errors->has("break_times.$i.end_time"))
-                                <p class="form-error-message">{{ $errors->first("break_times.$i.end_time") }}</p>
+                                <p class="form-error-message__break">{{ $errors->first("break_times.$i.end_time") }}</p>
                             @endif
                         </div>
                     @endforeach
@@ -100,9 +100,9 @@
             <tr class="admin-attendance-detail__row--note">
                 <th class="admin-attendance-detail__th--note">備考</th>
                 <td class="admin-attendance-detail__td--note">
-                    <textarea name="note" rows="3" class="admin-attendance-detail__textarea">{{ old('note', $attendance->note) }}</textarea>
+                    <textarea name="note" rows="4" class="admin-attendance-detail__textarea">{{ old('note', $attendance->note) }}</textarea>
                     @if ($errors->has('note'))
-                        <p class="form-error-message">{{ $errors->first('note') }}</p>
+                        <p class="form-error-message__note">{{ $errors->first('note') }}</p>
                     @endif
                 </td>
             </tr>

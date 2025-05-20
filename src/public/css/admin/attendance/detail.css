@@ -30,7 +30,7 @@ html, body {
     background: white;
     font-size: 18px;
     border-radius: 10px;
-    margin: 50px 0px 100px 0px;
+    margin: 50px 0px 0px 0px;
     border-collapse: collapse;
     table-layout: fixed;
     border-spacing: 0;
@@ -96,7 +96,84 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     letter-spacing: 0.15em;
 }
 
+.admin-attendance-table__break-time__group {
+    display: flex;
+    margin: 60px 0px 50px 40px;
+    gap: 50px;
+    flex-wrap: nowrap;
+}
+
+.admin-attendance-detail__th--break {
+    padding: 40px 140px 35px 15px;
+    color: #737373;
+}
+
+.admin-attendance-detail__input--break {
+    height: 35px;
+    width: 95px;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 25px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+
 .tilde {
-    margin: 0px 5px 0px 5px;
-    color: black;
+    margin-top: 5px;
+}
+
+.admin-attendance-detail__th--note {
+    padding: 15px 140px 35px 15px;
+    color: #737373;
+}
+
+.admin-attendance-detail__textarea {
+    resize: none;
+    border: #EBEBEB 1.5px solid;
+    border-radius: 5px;
+    margin: 28px 0px 25px 40px;
+    width: 343px;
+    font-size: 16px;
+    padding: 10px 10px;
+}
+
+.admin-attendance-detail__button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-attendance-detail__button-submit {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 40px;
+    border: black;
+    border-radius: 6px;
+    margin-top: 80px;
+}
+
+.form-error-message__start-time {
+    color: red;
+    font-size: 16px;
+    transform: translate(0px, 10px);
+    letter-spacing: 0.1em;
+    width: 370px;
+}
+
+.form-error-message__end-time {
+    color: red;
+    font-size: 16px;
+    transform: translate(0px, 10px);
+    letter-spacing: 0.1em;
+    width: 370px;
+}
+
+.form-error-message__note {
+    color: red;
+    font-size: 16px;
+    transform: translate(40px, -15px);
+    letter-spacing: 0.1em;
 }

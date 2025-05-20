@@ -59,7 +59,6 @@ class UpdateAttendanceByAdminRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $breakTimes = $this->input('break_times', []);
-
             $ranges = [];
     
             foreach ($breakTimes as $index => $break) {
@@ -68,6 +67,10 @@ class UpdateAttendanceByAdminRequest extends FormRequest
     
                 if (!$start || !$end) {
                     continue;
+                }
+
+                if ($start >= $end) {
+                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です。');
                 }
     
                 try {

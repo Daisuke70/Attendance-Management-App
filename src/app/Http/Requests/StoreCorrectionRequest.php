@@ -50,24 +50,45 @@ class StoreCorrectionRequest extends FormRequest
         $validator->after(function ($validator) {
             $startTime = $this->input('start_time');
             $endTime = $this->input('end_time');
-
+    
             if ($startTime && $endTime && $startTime >= $endTime) {
                 $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です。');
             }
-
-            if ($startTime && $endTime && is_array($this->input('break_times'))) {
-                foreach ($this->input('break_times') as $i => $break) {
+    
+            $breakTimes = $this->input('break_times', []);
+    
+            if ($startTime && $endTime && is_array($breakTimes)) {
+                $ranges = [];
+    
+                foreach ($breakTimes as $i => $break) {
                     $breakStart = $break['start_time'] ?? null;
                     $breakEnd = $break['end_time'] ?? null;
-
+    
                     if (($breakStart && ($breakStart < $startTime || $breakStart > $endTime)) ||
                         ($breakEnd && ($breakEnd < $startTime || $breakEnd > $endTime))) {
                         $validator->errors()->add("break_times.{$i}.start_time", '休憩時間が勤務時間外です。');
-                        break;
                     }
-
+    
                     if ($breakStart && $breakEnd && $breakStart >= $breakEnd) {
                         $validator->errors()->add("break_times.{$i}.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です。');
+                    }
+
+                    if ($breakStart && $breakEnd) {
+                        try {
+                            $startMinutes = \Carbon\Carbon::parse($breakStart)->hour * 60 + \Carbon\Carbon::parse($breakStart)->minute;
+                            $endMinutes = \Carbon\Carbon::parse($breakEnd)->hour * 60 + \Carbon\Carbon::parse($breakEnd)->minute;
+    
+                            foreach ($ranges as $range) {
+                                if (!($endMinutes <= $range['start'] || $startMinutes >= $range['end'])) {
+                                    $validator->errors()->add("break_times.$i.start_time", '休憩時間が他の休憩と重複しています。');
+                                    break;
+                                }
+                            }
+    
+                            $ranges[] = ['start' => $startMinutes, 'end' => $endMinutes];
+                        } catch (\Exception $e) {
+
+                        }
                     }
                 }
             }

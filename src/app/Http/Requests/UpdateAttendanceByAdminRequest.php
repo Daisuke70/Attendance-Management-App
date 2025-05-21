@@ -29,13 +29,13 @@ class UpdateAttendanceByAdminRequest extends FormRequest
             'note' => ['required'],
     
             'break_times.*.start_time' => [
-                'required',
+                'nullable',
                 'date_format:H:i',
                 'after_or_equal:start_time',
                 'before_or_equal:end_time',
             ],
             'break_times.*.end_time' => [
-                'required',
+                'nullable',
                 'date_format:H:i',
                 'after_or_equal:start_time',
                 'before_or_equal:end_time',

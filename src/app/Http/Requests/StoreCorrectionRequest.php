@@ -35,13 +35,13 @@ class StoreCorrectionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'start_time.required' => '出勤時間を入力してください。',
-            'end_time.required' => '退勤時間を入力してください。',
-            'note.required' => '備考を記入してください。',
-            'start_time.date_format' => '出勤時間の形式が正しくありません。',
-            'end_time.date_format' => '退勤時間の形式が正しくありません。',
-            'break_times.*.start_time.date_format' => '休憩開始時間の形式が正しくありません。',
-            'break_times.*.end_time.date_format' => '休憩終了時間の形式が正しくありません。',
+            'start_time.required' => '出勤時間を入力してください',
+            'end_time.required' => '退勤時間を入力してください',
+            'note.required' => '備考を記入してください',
+            'start_time.date_format' => '出勤時間の形式が正しくありません',
+            'end_time.date_format' => '退勤時間の形式が正しくありません',
+            'break_times.*.start_time.date_format' => '休憩開始時間の形式が正しくありません',
+            'break_times.*.end_time.date_format' => '休憩終了時間の形式が正しくありません',
         ];
     }
 
@@ -52,7 +52,7 @@ class StoreCorrectionRequest extends FormRequest
             $endTime = $this->input('end_time');
     
             if ($startTime && $endTime && $startTime >= $endTime) {
-                $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です。');
+                $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です');
             }
     
             $breakTimes = $this->input('break_times', []);
@@ -66,11 +66,11 @@ class StoreCorrectionRequest extends FormRequest
     
                     if (($breakStart && ($breakStart < $startTime || $breakStart > $endTime)) ||
                         ($breakEnd && ($breakEnd < $startTime || $breakEnd > $endTime))) {
-                        $validator->errors()->add("break_times.{$i}.start_time", '休憩時間が勤務時間外です。');
+                        $validator->errors()->add("break_times.{$i}.start_time", '休憩時間が勤務時間外です');
                     }
     
                     if ($breakStart && $breakEnd && $breakStart >= $breakEnd) {
-                        $validator->errors()->add("break_times.{$i}.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です。');
+                        $validator->errors()->add("break_times.{$i}.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です');
                     }
 
                     if ($breakStart && $breakEnd) {
@@ -80,7 +80,7 @@ class StoreCorrectionRequest extends FormRequest
     
                             foreach ($ranges as $range) {
                                 if (!($endMinutes <= $range['start'] || $startMinutes >= $range['end'])) {
-                                    $validator->errors()->add("break_times.$i.start_time", '休憩時間が他の休憩と重複しています。');
+                                    $validator->errors()->add("break_times.$i.start_time", '休憩時間が他の休憩と重複しています');
                                     break;
                                 }
                             }

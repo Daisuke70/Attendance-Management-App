@@ -52,17 +52,25 @@
                 <th class="admin-attendance-detail__th--break">休憩</th>
                 <td class="admin-attendance-detail__td--break">
                     @php
-                        $oldBreaks = old('break_times', []);
-                        $breaks = !empty($oldBreaks) ? $oldBreaks : $attendance->breakTimes;
+                        $oldBreaks = old('break_times');
+                        if ($oldBreaks !== null) {
+                            $breaks = $oldBreaks;
+                            $breakCount = count($breaks);
+                        } else {
+                            $breaks = $attendance->breakTimes;
+                            $breakCount = (is_countable($breaks) ? count($breaks) : 0) + 1; // 初回は +1 して1枠追加
+                        }
                     @endphp
 
-                    @foreach ($breaks as $i => $break)
+                    @for ($i = 0; $i < $breakCount; $i++)
                         @php
+                            $break = $breaks[$i] ?? null;
+
                             $startTime = old("break_times.$i.start_time") ??
-                                        (is_array($break) ? $break['start_time'] ?? null : optional($break)->start_time);
+                                        (is_array($break) ? ($break['start_time'] ?? null) : optional($break)->start_time);
 
                             $endTime = old("break_times.$i.end_time") ??
-                                        (is_array($break) ? $break['end_time'] ?? null : optional($break)->end_time);
+                                        (is_array($break) ? ($break['end_time'] ?? null) : optional($break)->end_time);
 
                             try {
                                 $startTime = $startTime ? \Carbon\Carbon::parse($startTime)->format('H:i') : '';
@@ -81,20 +89,20 @@
                             <input type="time" name="break_times[{{ $i }}][start_time]"
                                 class="admin-attendance-detail__input--break" value="{{ $startTime }}"
                                 onclick="this.showPicker && this.showPicker()"
-                                >
+                            >
                             <span class="tilde">〜</span>
                             <input type="time" name="break_times[{{ $i }}][end_time]"
                                 class="admin-attendance-detail__input--break" value="{{ $endTime }}"
                                 onclick="this.showPicker && this.showPicker()"
-                                >
-                            @if ($errors->has("break_times.$i.start_time"))
-                                <p class="form-error-message__break">{{ $errors->first("break_times.$i.start_time") }}</p>
-                            @endif
-                            @if ($errors->has("break_times.$i.end_time"))
-                                <p class="form-error-message__break">{{ $errors->first("break_times.$i.end_time") }}</p>
-                            @endif
+                            >
                         </div>
-                    @endforeach
+                        @if ($errors->has("break_times.$i.start_time"))
+                            <p class="form-error-message__break">{{ $errors->first("break_times.$i.start_time") }}</p>
+                        @endif
+                        @if ($errors->has("break_times.$i.end_time"))
+                            <p class="form-error-message__break">{{ $errors->first("break_times.$i.end_time") }}</p>
+                        @endif
+                    @endfor
                 </td>
             </tr>
             <tr class="admin-attendance-detail__row--note">

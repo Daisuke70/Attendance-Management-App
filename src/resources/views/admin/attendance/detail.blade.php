@@ -99,9 +99,6 @@
                         @if ($errors->has("break_times.$i.start_time"))
                             <p class="form-error-message__break">{{ $errors->first("break_times.$i.start_time") }}</p>
                         @endif
-                        @if ($errors->has("break_times.$i.end_time"))
-                            <p class="form-error-message__break">{{ $errors->first("break_times.$i.end_time") }}</p>
-                        @endif
                     @endfor
                 </td>
             </tr>

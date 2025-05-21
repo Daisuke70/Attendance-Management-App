@@ -362,7 +362,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         letter-spacing: 0.1em;
         width: 370px;
     }
-    
+
     .form-error-message__end-time {
         color: red;
         font-size: 13px;

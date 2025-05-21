@@ -58,41 +58,65 @@ class UpdateAttendanceByAdminRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
+            $startTime = $this->input('start_time');
+            $endTime = $this->input('end_time');
+    
+            if ($startTime && $endTime && $startTime >= $endTime) {
+                $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です');
+            }
+    
             $breakTimes = $this->input('break_times', []);
-            $ranges = [];
     
-            foreach ($breakTimes as $index => $break) {
-                $start = $break['start_time'] ?? null;
-                $end = $break['end_time'] ?? null;
-
-                if (empty($start) && empty($end)) {
-                    continue;
-                }
-
-                if (empty($start) || empty($end)) {
-                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間と終了時間の両方を入力してください。');
-                    continue;
-                }
-
-                if ($start >= $end) {
-                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間もしくは終了時間が不適切な値です。');
-                }
+            if ($startTime && $endTime && is_array($breakTimes)) {
+                $ranges = [];
     
-                try {
-                    $startMinutes = \Carbon\Carbon::parse($start)->hour * 60 + \Carbon\Carbon::parse($start)->minute;
-                    $endMinutes = \Carbon\Carbon::parse($end)->hour * 60 + \Carbon\Carbon::parse($end)->minute;
+                foreach ($breakTimes as $i => $break) {
+                    $breakStart = $break['start_time'] ?? null;
+                    $breakEnd = $break['end_time'] ?? null;
     
-                    foreach ($ranges as $range) {
-                        if (!($endMinutes <= $range['start'] || $startMinutes >= $range['end'])) {
-                            $validator->errors()->add("break_times.$index.start_time", '休憩時間が他の休憩と重複しています。');
-                            break;
-                        }
+                    // 両方空ならスキップ
+                    if (empty($breakStart) && empty($breakEnd)) {
+                        continue;
                     }
     
-                    $ranges[] = ['start' => $startMinutes, 'end' => $endMinutes];
+                    // 一方だけ空ならエラー
+                    if (empty($breakStart) || empty($breakEnd)) {
+                        $validator->errors()->add("break_times.$i.start_time", '休憩開始時間と終了時間の両方を入力してください。');
+                        continue;
+                    }
     
-                } catch (\Exception $e) {
-
+                    // 勤務時間外チェック → start_time のみにメッセージ
+                    if (
+                        ($breakStart < $startTime || $breakStart > $endTime) ||
+                        ($breakEnd < $startTime || $breakEnd > $endTime)
+                    ) {
+                        $validator->errors()->add("break_times.$i.start_time", '休憩時間が勤務時間外です。');
+                        continue;
+                    }
+    
+                    // 開始時間 >= 終了時間チェック
+                    if ($breakStart >= $breakEnd) {
+                        $validator->errors()->add("break_times.$i.start_time", '休憩開始時間もしくは終了時間が不適切な値です。');
+                        continue;
+                    }
+    
+                    // 重複チェック
+                    try {
+                        $startMinutes = \Carbon\Carbon::parse($breakStart)->hour * 60 + \Carbon\Carbon::parse($breakStart)->minute;
+                        $endMinutes = \Carbon\Carbon::parse($breakEnd)->hour * 60 + \Carbon\Carbon::parse($breakEnd)->minute;
+    
+                        foreach ($ranges as $range) {
+                            if (!($endMinutes <= $range['start'] || $startMinutes >= $range['end'])) {
+                                $validator->errors()->add("break_times.$i.start_time", '休憩時間が他の休憩と重複しています。');
+                                break;
+                            }
+                        }
+    
+                        $ranges[] = ['start' => $startMinutes, 'end' => $endMinutes];
+    
+                    } catch (\Exception $e) {
+                        // パースエラーは無視
+                    }
                 }
             }
         });

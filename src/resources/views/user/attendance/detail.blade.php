@@ -104,16 +104,12 @@
                                     onclick="this.showPicker && this.showPicker()">
                             </label>
                         </div>
-                        <p class="attendance-detail__break-time__error-message">
-                            @error('break_times.$i.start_time')
-                            {{ $message }}
-                            @enderror
-                        </p>
-                        <p class="attendance-detail__break-time__error-message">
-                            @error('break_times.$i.end_time')
-                            {{ $message }}
-                            @enderror
-                        </p>
+                        @error("break_times.{$i}.start_time")
+                            <p class="attendance-detail__break-time__error-message">{{ $message }}</p>
+                        @enderror
+                        @error("break_times.{$i}.end_time")
+                            <p class="attendance-detail__break-time__error-message">{{ $message }}</p>
+                        @enderror
                     @endfor
                 </div>
             </div>

@@ -64,13 +64,18 @@ class UpdateAttendanceByAdminRequest extends FormRequest
             foreach ($breakTimes as $index => $break) {
                 $start = $break['start_time'] ?? null;
                 $end = $break['end_time'] ?? null;
-    
-                if (!$start || !$end) {
+
+                if (empty($start) && empty($end)) {
+                    continue;
+                }
+
+                if (empty($start) || empty($end)) {
+                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間と終了時間の両方を入力してください。');
                     continue;
                 }
 
                 if ($start >= $end) {
-                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間もしくは休憩終了時間が不適切な値です。');
+                    $validator->errors()->add("break_times.$index.start_time", '休憩開始時間もしくは終了時間が不適切な値です。');
                 }
     
                 try {

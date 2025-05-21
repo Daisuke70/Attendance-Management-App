@@ -67,11 +67,13 @@ class AdminAttendanceController extends Controller
             $attendance->breakTimes()->delete();
     
             foreach ($request->input('break_times', []) as $break) {
-                BreakTime::create([
-                    'attendance_id' => $attendance->id,
-                    'start_time' => $break['start_time'],
-                    'end_time' => $break['end_time'],
-                ]);
+                if (!empty($break['start_time']) && !empty($break['end_time'])) {
+                    BreakTime::create([
+                        'attendance_id' => $attendance->id,
+                        'start_time' => $break['start_time'],
+                        'end_time' => $break['end_time'],
+                    ]);
+                }
             }
     
             DB::commit();

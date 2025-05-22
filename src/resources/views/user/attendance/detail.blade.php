@@ -35,24 +35,30 @@
                             ?? $attendance->clock_out;
                     @endphp
 
-                    <input type="time" name="start_time"
-                        value="{{ $clockIn ? \Carbon\Carbon::parse($clockIn)->format('H:i') : '' }}"
-                        class="attendance-detail__input @if($isPending) is-readonly @endif"
-                        @if ($isPending) readonly @endif
-                        onclick="this.showPicker && this.showPicker()">
-
-                    <span class="tilde">〜</span>
-
-                    <input type="time" name="end_time"
-                        value="{{ $clockOut ? \Carbon\Carbon::parse($clockOut)->format('H:i') : '' }}"
-                        class="attendance-detail__input @if($isPending) is-readonly @endif"
-                        @if ($isPending) readonly @endif
-                        onclick="this.showPicker && this.showPicker()">
+                    <div class="attendance-detail__start-end__input">
+                        <label class="start-end__label  @if($isPending) is-readonly @endif">
+                            <input type="time" name="start_time"
+                                value="{{ $clockIn ? \Carbon\Carbon::parse($clockIn)->format('H:i') : '' }}"
+                                class="attendance-detail__input @if($isPending) is-readonly @endif"
+                                @if ($isPending) readonly @endif
+                                onclick="this.showPicker && this.showPicker()"
+                            >
+                        </label>
+                        <span class="tilde">〜</span>
+                        <label class="start-end__label  @if($isPending) is-readonly @endif">
+                            <input type="time" name="end_time"
+                                value="{{ $clockOut ? \Carbon\Carbon::parse($clockOut)->format('H:i') : '' }}"
+                                class="attendance-detail__input @if($isPending) is-readonly @endif"
+                                @if ($isPending) readonly @endif
+                                onclick="this.showPicker && this.showPicker()"
+                            >
+                        </label>
+                    </div>
                     <p class="attendance-detail__error-message">
                         @error('start_time')
                         {{ $message }}
                         @enderror
-                        </p>
+                    </p>
                     <p class="attendance-detail__error-message">
                         @error('end_time')
                         {{ $message }}
@@ -93,7 +99,8 @@
                                     value="{{ $start ? \Carbon\Carbon::parse($start)->format('H:i') : '' }}"
                                     class="break-time__input"
                                     @if ($isPending) readonly @endif
-                                    onclick="this.showPicker && this.showPicker()">
+                                    onclick="this.showPicker && this.showPicker()"
+                                >
                             </label>
                             <span class="break-time__tilde">〜</span>
                             <label class="break-time__label  @if($isPending) is-readonly @endif">
@@ -101,7 +108,8 @@
                                     value="{{ $end ? \Carbon\Carbon::parse($end)->format('H:i') : '' }}"
                                     class="break-time__input"
                                     @if ($isPending) readonly @endif
-                                    onclick="this.showPicker && this.showPicker()">
+                                    onclick="this.showPicker && this.showPicker()"
+                                >
                             </label>
                         </div>
                         @error("break_times.{$i}.start_time")
@@ -117,7 +125,8 @@
             <div class="attendance-detail__group-remarks">
                 <p class="attendance-detail__label">備考</p>
                 <textarea name="note" class="attendance-detail__textarea @if($isPending) is-readonly @endif" rows="4"
-                    @if ($isPending) readonly @endif>{{ old('note') ?? optional($correctionRequest)->new_note ?? $attendance->note }}</textarea>
+                    @if ($isPending) readonly @endif>{{ old('note') ?? optional($correctionRequest)->new_note ?? $attendance->note }}
+                </textarea>
             </div>
             <p class="attendance-detail__error-message__note">
                 @error('note')

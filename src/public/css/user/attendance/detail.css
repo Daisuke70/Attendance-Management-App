@@ -35,6 +35,7 @@ html, body {
     margin-top: 50px;
     border-collapse: collapse;
     border-spacing: 0;
+    letter-spacing: 0.15em;
 }
 
 .attendance-detail__group {
@@ -62,7 +63,7 @@ html, body {
 }
 
 .attendance-detail__start-end {
-    margin: 32px 0px 22px 22%;
+    margin: 32px 0px 22px 20%;
 }
 
 .attendance-detail__error-message {
@@ -76,13 +77,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .attendance-detail__input {
     height: 35px;
-    width: 83px;
+    width: 95px;
     border: #EBEBEB 1.5px solid;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-    padding-left: 18px;
+    padding-left: 20px;
     font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.15em;
 }
 
 .tilde {
@@ -93,7 +95,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .attendance-detail__break-time {
     display: flex;
     flex-direction: column;
-    margin: 32px 0px 22px 28%;;
+    margin: 32px 0px 22px 245px;;
 }
 
 .attendance-detail__break-time__input {
@@ -104,7 +106,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .break-time__label {
     display: inline-block;
     height: 36px;
-    width: 103px;
+    width: 120px;
     border: #EBEBEB 1.5px solid;
     border-radius: 5px;
     background-color: white;
@@ -118,11 +120,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
     font-weight: bold;
     font-family: 'Noto Sans JP', sans-serif;
-    padding-left: 17px;
+    padding-left: 20px;
     border: none;
     background: transparent;
     cursor: pointer;
     box-sizing: border-box;
+    letter-spacing: 0.15em;
 }
 
 .break-time__tilde {
@@ -143,15 +146,15 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     resize: none;
     border: #EBEBEB 1.5px solid;
     border-radius: 5px;
-    margin: 15px 0px 15px 28%;
-    width: 305px;
+    margin: 15px 0px 15px 245px;
+    width: 340px;
     font-size: 16px;
     padding: 10px 10px;
 }
 
 .attendance-detail__error-message__note {
     color: red;
-    transform: translate(37.5%, -10px);
+    transform: translate(36.5%, -10px);
 }
 
 .attendance-detail__button {

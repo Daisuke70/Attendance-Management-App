@@ -33,6 +33,7 @@ html, body {
     height: 60px;
     border-radius: 10px;
     margin-top: 40px;
+    letter-spacing: 0.15em;
 }
 
 .attendance-table__month-nav--prev {
@@ -63,6 +64,7 @@ html, body {
     font-size: 21px;
     font-weight: bold;
     margin: 12px 45px 0px 0px;
+    letter-spacing: 0em;
 }
 
 .calender-label__next {
@@ -87,6 +89,7 @@ html, body {
     border-collapse: collapse;
     table-layout: fixed;
     border-spacing: 0;
+    letter-spacing: 0.15em;
 }
 
 .attendance-table__head th{

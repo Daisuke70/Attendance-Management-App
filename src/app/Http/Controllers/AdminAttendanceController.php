@@ -87,14 +87,14 @@ class AdminAttendanceController extends Controller
         }
     }
 
-    public function listStaffAttendances(Request $request)
+    public function listStaffAttendances(Request $request, $id)
     {
         $translator = new Translator('ja');
         $translator->addLoader('array', new ArrayLoader());
         Carbon::setTranslator($translator);
         Carbon::setLocale('ja');
 
-        $user = auth()->user();
+        $user = User::findOrFail($id);
 
         $targetDate = $request->input('date')
             ? Carbon::createFromFormat('Y-m', $request->input('date'))
@@ -114,6 +114,6 @@ class AdminAttendanceController extends Controller
             ->get()
             ->keyBy('date');
 
-        return view('admin.staff.attendance', compact('datesInMonth', 'attendances', 'targetDate'));
+        return view('admin.staff.attendance', compact('datesInMonth', 'attendances', 'targetDate', 'user'));
     }
 }

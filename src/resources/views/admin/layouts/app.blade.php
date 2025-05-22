@@ -17,7 +17,7 @@
             </div>
             <div class="header-content__link">
                 <a href="{{ route('admin.attendances.index')}}" class="header-link">勤怠一覧</a>
-                <a href="{{ route('admin.staffs.index')}}" class="header-link">スタッフ一覧</a>
+                <a href="{{ route('admin.staff.index')}}" class="header-link">スタッフ一覧</a>
                 <a href="{{ route('admin.correction_requests.index')}}" class="header-link">申請一覧</a>
                 <form action="{{ route('admin.logout') }}" class="header-content__logout-form" method="post">
                     @csrf

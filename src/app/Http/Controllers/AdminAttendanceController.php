@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\BreakTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\Loader\ArrayLoader;
 
 class AdminAttendanceController extends Controller
 {
@@ -83,5 +85,35 @@ class AdminAttendanceController extends Controller
             DB::rollBack();
             return back()->withErrors('更新処理に失敗しました。')->withInput();
         }
+    }
+
+    public function listStaffAttendances(Request $request)
+    {
+        $translator = new Translator('ja');
+        $translator->addLoader('array', new ArrayLoader());
+        Carbon::setTranslator($translator);
+        Carbon::setLocale('ja');
+
+        $user = auth()->user();
+
+        $targetDate = $request->input('date')
+            ? Carbon::createFromFormat('Y-m', $request->input('date'))
+            : Carbon::now();
+
+        $startOfMonth = $targetDate->copy()->startOfMonth();
+        $endOfMonth = $targetDate->copy()->endOfMonth();
+
+        $datesInMonth = collect();
+        for ($date = $startOfMonth->copy(); $date->lte($endOfMonth); $date->addDay()) {
+            $datesInMonth->push($date->copy());
+        }
+
+        $attendances = Attendance::with('breakTimes')
+            ->where('user_id', $user->id)
+            ->whereBetween('date', [$startOfMonth, $endOfMonth])
+            ->get()
+            ->keyBy('date');
+
+        return view('admin.staff.attendance', compact('datesInMonth', 'attendances', 'targetDate'));
     }
 }

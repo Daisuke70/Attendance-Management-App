@@ -1,0 +1,165 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #F0EFF2;
+    min-height: 100%;
+}
+
+.content {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.staff-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.staff-table h2 {
+    border-left: 7px solid black;
+    padding-left: 20px;
+    margin: 65px 760px 0px 0px;
+}
+
+.staff-table__table {
+    width: 930px;
+    background: white;
+    color: #737373;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 50px 0px 100px 0px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0;
+    letter-spacing: 0.15em;
+}
+
+.staff-table__head th{
+    border-bottom: 3px solid #E1E1E1;
+}
+
+.staff-table__head--date {
+    padding: 15px 0px 13px 10px;
+}
+
+
+.staff-table__head--name {
+    padding: 15px 0px 13px 70px;
+}
+
+.staff-table__head--email {
+    padding: 17px 10px 13px 0px;
+}
+
+.staff-table__head--attendance {
+    padding: 17px 85px 13px 0px;
+}
+
+.staff-table__body-row {
+    border-bottom: 2px solid #E1E1E1;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.staff-table__body--name {
+    padding: 15px 0px 13px 150px;
+}
+
+.staff-table__body--email {
+    padding: 15px 0px 13px 65px;
+}
+
+.staff-table__body--detail {
+    padding: 15px 0px 13px 93px;
+}
+
+.staff-table__detail-link {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: #F0EFF2;
+        min-height: 100%;
+    }
+    
+    .content {
+        width: 100vw;
+        min-height: 100vh;
+    }
+    
+    .staff-table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .staff-table h2 {
+        border-left: 7px solid black;
+        padding-left: 20px;
+        font-size: 21px;
+        margin: 40px 480px 0px 0px;
+    }
+
+    .staff-table__table {
+        width: 630px;
+        background: white;
+        color: #737373;
+        font-size: 16px;
+        border-radius: 10px;
+        margin-top: 45px;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border-spacing: 0;
+    }
+    
+    .staff-table__head th{
+        border-bottom: 3px solid #E1E1E1;
+    }
+    
+    .staff-table__head--name {
+        padding: 10px 0px 10px 0px;
+    }
+    
+    
+    .staff-table__head--email {
+        padding: 11px 15px 10px 0px;
+    }
+    
+    .staff-table__head--attendance {
+        padding: 11px 30px 10px 0px;
+    }
+    
+    .staff-table__body-row {
+        border-bottom: 2px solid #E1E1E1;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    .staff-table__body--name {
+        padding: 12px 0px 8px 70px;
+    }
+    
+    .staff-table__body--email {
+        padding: 13px 0px 8px 20px;
+    }
+    
+    .staff-table__body--detail {
+        padding: 13px 0px 8px 70px;
+    }
+    
+    .staff-table__detail-link {
+        text-decoration: none;
+        color: black;
+    }
+}

@@ -26,7 +26,7 @@ class StoreCorrectionRequest extends FormRequest
         return [
             'start_time' => ['required', 'date_format:H:i'],
             'end_time' => ['required', 'date_format:H:i'],
-            'note' => ['required', 'string'],
+            'note' => ['required'],
             'break_times.*.start_time' => ['nullable', 'date_format:H:i'],
             'break_times.*.end_time' => ['nullable', 'date_format:H:i'],
         ];

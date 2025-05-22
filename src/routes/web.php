@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/attendance/list', [AdminAttendanceController::class, 'listAllAttendances'])->name('admin.attendances.index');
     Route::get('/admin/attendance/{id}', [AdminAttendanceController::class, 'showStaffAttendance'])->name('admin.attendances.detail');
     Route::patch('/admin/attendance/{id}', [AdminAttendanceController::class, 'updateStaffAttendance'])->name('admin.attendances.update');
-    Route::get('/admin/staff/list', [AdminStaffController::class, 'listAllStaff'])->name('admin.staffs.index');
+    Route::get('/admin/staff/list', [AdminStaffController::class, 'listAllStaff'])->name('admin.staff.index');
+    Route::get('/admin/attendance/staff/{id}', [AdminAttendanceController::class, 'listStaffAttendances'])->name('admin.staff.attendances.index');
     Route::get('/admin/stamp_correction_request/list', [AdminAttendanceCorrectionController::class, 'listAllCorrectionRequests'])->name('admin.correction_requests.index');
 });

@@ -31,7 +31,7 @@ class AttendancesSeeder extends Seeder
             }
 
             $startDate = Carbon::parse('2025-04-01');
-            $endDate = Carbon::parse('2025-05-20');
+            $endDate = Carbon::parse('2025-05-22');
 
             while ($startDate->lte($endDate)) {
                 if ($startDate->isWeekday()) {

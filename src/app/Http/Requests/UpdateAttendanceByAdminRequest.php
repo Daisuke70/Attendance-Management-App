@@ -61,9 +61,7 @@ class UpdateAttendanceByAdminRequest extends FormRequest
             $startTime = $this->input('start_time');
             $endTime = $this->input('end_time');
     
-            if ($startTime && $endTime && $startTime >= $endTime) {
-                $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です');
-            }
+        
     
             $breakTimes = $this->input('break_times', []);
     
@@ -73,19 +71,16 @@ class UpdateAttendanceByAdminRequest extends FormRequest
                 foreach ($breakTimes as $i => $break) {
                     $breakStart = $break['start_time'] ?? null;
                     $breakEnd = $break['end_time'] ?? null;
-    
-                    // 両方空ならスキップ
+
                     if (empty($breakStart) && empty($breakEnd)) {
                         continue;
                     }
-    
-                    // 一方だけ空ならエラー
+
                     if (empty($breakStart) || empty($breakEnd)) {
-                        $validator->errors()->add("break_times.$i.start_time", '休憩開始時間と終了時間の両方を入力してください。');
+                        $validator->errors()->add("break_times.$i.start_time", '休憩開始時間と休憩終了時間の両方を入力してください。');
                         continue;
                     }
     
-                    // 勤務時間外チェック → start_time のみにメッセージ
                     if (
                         ($breakStart < $startTime || $breakStart > $endTime) ||
                         ($breakEnd < $startTime || $breakEnd > $endTime)
@@ -93,14 +88,12 @@ class UpdateAttendanceByAdminRequest extends FormRequest
                         $validator->errors()->add("break_times.$i.start_time", '休憩時間が勤務時間外です。');
                         continue;
                     }
-    
-                    // 開始時間 >= 終了時間チェック
+
                     if ($breakStart >= $breakEnd) {
                         $validator->errors()->add("break_times.$i.start_time", '休憩開始時間もしくは終了時間が不適切な値です。');
                         continue;
                     }
-    
-                    // 重複チェック
+
                     try {
                         $startMinutes = \Carbon\Carbon::parse($breakStart)->hour * 60 + \Carbon\Carbon::parse($breakStart)->minute;
                         $endMinutes = \Carbon\Carbon::parse($breakEnd)->hour * 60 + \Carbon\Carbon::parse($breakEnd)->minute;
@@ -115,7 +108,7 @@ class UpdateAttendanceByAdminRequest extends FormRequest
                         $ranges[] = ['start' => $startMinutes, 'end' => $endMinutes];
     
                     } catch (\Exception $e) {
-                        // パースエラーは無視
+
                     }
                 }
             }

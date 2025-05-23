@@ -54,5 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/admin/attendance/{id}', [AdminAttendanceController::class, 'updateStaffAttendance'])->name('admin.attendances.update');
     Route::get('/admin/staff/list', [AdminStaffController::class, 'listAllStaff'])->name('admin.staff.index');
     Route::get('/admin/attendance/staff/{id}', [AdminAttendanceController::class, 'listStaffAttendances'])->name('admin.staff.attendances.index');
+    Route::get('/admin/attendance/staff/{id}/export', [AdminAttendanceController::class, 'exportCsv'])->name('admin.staff.attendances.export');
     Route::get('/admin/stamp_correction_request/list', [AdminAttendanceCorrectionController::class, 'listAllCorrectionRequests'])->name('admin.correction_requests.index');
 });

@@ -73,5 +73,8 @@
             @endforeach
         </tbody>
     </table>
+    <a href="{{ route('admin.staff.attendances.export', ['id' => $user->id, 'date' => $targetDate->format('Y-m')]) }}" class="csv-button">
+        CSV出力
+    </a>
 </div>
 @endsection

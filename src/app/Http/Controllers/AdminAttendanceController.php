@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Loader\ArrayLoader;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminAttendanceController extends Controller
 {
@@ -115,5 +116,60 @@ class AdminAttendanceController extends Controller
             ->keyBy('date');
 
         return view('admin.staff.attendance', compact('datesInMonth', 'attendances', 'targetDate', 'user'));
+    }
+
+    public function exportCsv(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+    
+        $targetDate = $request->input('date')
+            ? Carbon::createFromFormat('Y-m', $request->input('date'))
+            : Carbon::now();
+    
+        $startOfMonth = $targetDate->copy()->startOfMonth();
+        $endOfMonth = $targetDate->copy()->endOfMonth();
+    
+        $attendances = Attendance::with('breakTimes')
+            ->where('user_id', $user->id)
+            ->whereBetween('date', [$startOfMonth, $endOfMonth])
+            ->get();
+    
+        $response = new StreamedResponse(function () use ($attendances) {
+            $handle = fopen('php://output', 'w');
+    
+            fputcsv($handle, ['日付', '出勤時間', '退勤時間', '休憩時間', '勤務時間']);
+    
+            foreach ($attendances as $attendance) {
+                $clockIn = $attendance->clock_in ? Carbon::parse($attendance->clock_in) : null;
+                $clockOut = $attendance->clock_out ? Carbon::parse($attendance->clock_out) : null;
+    
+                $totalBreakMinutes = $attendance->breakTimes->sum(function ($break) {
+                    if ($break->start_time && $break->end_time) {
+                        return Carbon::parse($break->start_time)->diffInMinutes(Carbon::parse($break->end_time));
+                    }
+                    return 0;
+                });
+    
+                $workMinutes = ($clockIn && $clockOut)
+                    ? $clockIn->diffInMinutes($clockOut) - $totalBreakMinutes
+                    : null;
+    
+                fputcsv($handle, [
+                    Carbon::parse($attendance->date)->format('Y-m-d'),
+                    $clockIn ? $clockIn->format('H:i') : '',
+                    $clockOut ? $clockOut->format('H:i') : '',
+                    gmdate('H:i', $totalBreakMinutes * 60),                        $workMinutes !== null ? gmdate('H:i', max($workMinutes, 0) * 60) : '',
+                ]);
+            }
+    
+            fclose($handle);
+        });
+    
+        $fileName = 'attendance_' . $user->id . '_' . $targetDate->format('Y_m') . '.csv';
+    
+        $response->headers->set('Content-Type', 'text/csv; charset=UTF-8');
+        $response->headers->set('Content-Disposition', "attachment; filename={$fileName}");
+    
+        return $response;
     }
 }

@@ -211,7 +211,7 @@ input.is-readonly {
 textarea.is-readonly {
     border: none;
     font-size: 16px;
-    padding-top: 25px;
+    padding: 25px;
     background-color: transparent;
     color: black !important;
     pointer-events: none;

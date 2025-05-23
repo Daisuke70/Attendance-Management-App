@@ -26,18 +26,22 @@
             <tr class="admin-attendance-detail__row">
                 <th class="admin-attendance-detail__th--start-end">出勤・退勤</th>
                 <td class="admin-attendance-detail__td--start-end">
-                    <div class="input-group">
-                        <input type="time" name="start_time"
-                            class="admin-attendance-detail__input"
-                            value="{{ old('start_time', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}"
-                            onclick="this.showPicker && this.showPicker()"
-                        >
-                        〜
-                        <input type="time" name="end_time"
-                            class="admin-attendance-detail__input"
-                            value="{{ old('end_time', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}"
-                            onclick="this.showPicker && this.showPicker()"
-                        >
+                    <div class="admin-attendance-detail__start-end__group">
+                        <label class="start-end__label">
+                            <input type="time" name="start_time"
+                                class="admin-attendance-detail__input"
+                                value="{{ old('start_time', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}"
+                                onclick="this.showPicker && this.showPicker()"
+                            >
+                        </label>
+                        <span class="tilde">〜</span>
+                        <label class="start-end__label">
+                            <input type="time" name="end_time"
+                                class="admin-attendance-detail__input"
+                                value="{{ old('end_time', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}"
+                                onclick="this.showPicker && this.showPicker()"
+                            >
+                        </label>
                     </div>
 
                     @if ($errors->has('start_time'))
@@ -58,7 +62,7 @@
                             $breakCount = count($breaks);
                         } else {
                             $breaks = $attendance->breakTimes;
-                            $breakCount = (is_countable($breaks) ? count($breaks) : 0) + 1; // 初回は +1 して1枠追加
+                            $breakCount = (is_countable($breaks) ? count($breaks) : 0) + 1;
                         }
                     @endphp
 
@@ -86,15 +90,19 @@
                         @endphp
 
                         <div class="admin-attendance-table__break-time__group">
-                            <input type="time" name="break_times[{{ $i }}][start_time]"
-                                class="admin-attendance-detail__input--break" value="{{ $startTime }}"
-                                onclick="this.showPicker && this.showPicker()"
-                            >
+                            <label class="break-label">
+                                <input type="time" name="break_times[{{ $i }}][start_time]"
+                                    class="admin-attendance-detail__input--break" value="{{ $startTime }}"
+                                    onclick="this.showPicker && this.showPicker()"
+                                >
+                            </label>
                             <span class="tilde">〜</span>
-                            <input type="time" name="break_times[{{ $i }}][end_time]"
-                                class="admin-attendance-detail__input--break" value="{{ $endTime }}"
-                                onclick="this.showPicker && this.showPicker()"
-                            >
+                            <label class="break-label">
+                                <input type="time" name="break_times[{{ $i }}][end_time]"
+                                    class="admin-attendance-detail__input--break" value="{{ $endTime }}"
+                                    onclick="this.showPicker && this.showPicker()"
+                                >
+                            </label>
                         </div>
                         @if ($errors->has("break_times.$i.start_time"))
                             <p class="form-error-message__break">{{ $errors->first("break_times.$i.start_time") }}</p>

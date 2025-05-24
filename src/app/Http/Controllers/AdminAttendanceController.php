@@ -134,34 +134,38 @@ class AdminAttendanceController extends Controller
             ->whereBetween('date', [$startOfMonth, $endOfMonth])
             ->get();
     
-        $response = new StreamedResponse(function () use ($attendances) {
+        $response = new StreamedResponse(function () use ($attendances, $user, $targetDate) {
             $handle = fopen('php://output', 'w');
-    
+
+            $title = "{$user->name}さんの" . $targetDate->format('Y年n月') . "の勤怠情報";
+            fputcsv($handle, [$title]);
+
             fputcsv($handle, ['日付', '出勤時間', '退勤時間', '休憩時間', '勤務時間']);
-    
+        
             foreach ($attendances as $attendance) {
                 $clockIn = $attendance->clock_in ? Carbon::parse($attendance->clock_in) : null;
                 $clockOut = $attendance->clock_out ? Carbon::parse($attendance->clock_out) : null;
-    
+        
                 $totalBreakMinutes = $attendance->breakTimes->sum(function ($break) {
                     if ($break->start_time && $break->end_time) {
                         return Carbon::parse($break->start_time)->diffInMinutes(Carbon::parse($break->end_time));
                     }
                     return 0;
                 });
-    
+        
                 $workMinutes = ($clockIn && $clockOut)
                     ? $clockIn->diffInMinutes($clockOut) - $totalBreakMinutes
                     : null;
-    
+            
                 fputcsv($handle, [
                     Carbon::parse($attendance->date)->format('Y-m-d'),
                     $clockIn ? $clockIn->format('H:i') : '',
                     $clockOut ? $clockOut->format('H:i') : '',
-                    gmdate('H:i', $totalBreakMinutes * 60),                        $workMinutes !== null ? gmdate('H:i', max($workMinutes, 0) * 60) : '',
+                    gmdate('H:i', $totalBreakMinutes * 60),
+                    $workMinutes !== null ? gmdate('H:i', max($workMinutes, 0) * 60) : '',
                 ]);
             }
-    
+            
             fclose($handle);
         });
     

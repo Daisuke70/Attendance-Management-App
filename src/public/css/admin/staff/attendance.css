@@ -86,7 +86,7 @@ html, body {
     color: #737373;
     font-size: 18px;
     border-radius: 10px;
-    margin: 50px 0px 100px 0px;
+    margin: 50px 0px 80px 0px;
     border-collapse: collapse;
     table-layout: fixed;
     border-spacing: 0;
@@ -157,6 +157,22 @@ html, body {
     color: black;
 }
 
+.csv-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 920px;
+}
+
+.csv-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background: black;
+    padding: 10px 30px;
+    border-radius: 6px;
+    letter-spacing: 0.15em;
+}
+
 @media screen and (min-width: 768px) and (max-width: 850px) {
     html, body {
         margin: 0;
@@ -170,7 +186,7 @@ html, body {
         min-height: 100vh;
     }
     
-    .attendance-table {
+    .staff-attendance-table {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -179,14 +195,14 @@ html, body {
         box-sizing: border-box;
     }
     
-    .attendance-table h2 {
+    .staff-attendance-table h2 {
         border-left: 7px solid black;
         padding-left: 20px;
         font-size: 21px;
-        margin: 40px 510px 0px 0px;
+        margin: 40px 380px 0px 0px;
     }
     
-    .attendance-table__month-nav {
+    .staff-attendance-table__month-nav {
         display: flex;
         justify-content: space-between;
         background: white;
@@ -196,22 +212,21 @@ html, body {
         margin-top: 40px;
     }
     
-    .attendance-table__month-nav--prev {
+    .staff-attendance-table__month-button--prev {
         text-decoration: none;
         color: 	#737373;
         font-size: 16px;
         font-weight: bold;
-        margin: 10px 0px 0px 15px;
+        margin: 10px 0px 0px 20px;
     }
     
     .calender-label__back {
-        margin-right: 3px;
+        margin-right: 2px;
     }
     
     .arrow-img {
         width: 18px;
         height: 15px;
-        margin-right: 3px;
     }
     
     .calender-img {
@@ -220,21 +235,26 @@ html, body {
         margin: 12px -170px 0px 0px;
     }
     
-    .attendance-table__month-nav--current {
+    .staff-attendance-table__month-button--current {
         font-size: 18px;
         font-weight: bold;
         margin: 10px 10px 0px 0px;
     }
 
-    .attendance-table__month-nav--next {
+    .staff-attendance-table__month-button--next {
         text-decoration: none;
         color: 	#737373;
         font-size: 16px;
         font-weight: bold;
         margin: 10px 15px 0px 0px;
+        padding-left: 5px;
     }
 
-    .attendance-table__table {
+    .calender-label__next {
+        margin-right: 0px;
+    }
+
+    .staff-attendance-table__table {
         width: 630px;
         background: white;
         color: #737373;
@@ -246,67 +266,83 @@ html, body {
         border-spacing: 0;
     }
     
-    .attendance-table__head th{
+    .staff-attendance-table__head th{
         border-bottom: 3px solid #E1E1E1;
     }
     
-    .attendance-table__head--date {
+    .staff-attendance-table__head--date {
         padding: 10px 0px 10px 18px;
     }
     
     
-    .attendance-table__head--in {
+    .staff-attendance-table__head--in {
         padding: 10px 0px 10px 45px;
     }
     
-    .attendance-table__head--out {
+    .staff-attendance-table__head--out {
         padding: 10px 0px 10px 20px;
     }
     
-    .attendance-table__head--break {
+    .staff-attendance-table__head--break {
         padding: 10px 18px 10px 0px;
     }
     
-    .attendance-table__head--total {
+    .staff-attendance-table__head--total {
         padding: 10px 50px 10px 0px;
     }
     
-    .attendance-table__head--detail {
+    .staff-attendance-table__head--detail {
         padding: 10px 60px 10px 0px;
     }
     
-    .attendance-table__body-row {
+    .staff-attendance-table__body-row {
         border-bottom: 2px solid #E1E1E1;
         font-weight: bold;
         font-size: 16px;
     }
     
-    .attendance-table__body--date {
+    .staff-attendance-table__body--date {
         padding: 12px 0px 8px 35px;
     }
     
-    .attendance-table__body--in {
+    .staff-attendance-table__body--in {
         padding: 13px 0px 8px 50px;
     }
     
-    .attendance-table__body--out {
-        padding: 13px 0px 8px 40px;
+    .staff-attendance-table__body--out {
+        padding: 13px 0px 8px 35px;
     }
     
-    .attendance-table__body--break {
-        padding: 13px 0px 8px 28px;
+    .staff-attendance-table__body--break {
+        padding: 13px 0px 8px 23px;
     }
     
-    .attendance-table__body-total {
-        padding: 13px 0px 8px 10px;
+    .staff-attendance-table__body--total {
+        padding: 13px 0px 8px 5px;
     }
     
-    .attendance-table__body--detail {
-        padding: 13px 0px 8px 8px;
+    .staff-attendance-table__body--detail {
+        padding: 13px 0px 8px 4px;
     }
     
     .detail-link {
         text-decoration: none;
         color: black;
+    }
+
+    .csv-button {
+        display: flex;
+        justify-content: flex-end;
+        width: 630px;
+    }
+    
+    .csv-link {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        background: black;
+        padding: 8px 20px;
+        border-radius: 6px;
+        letter-spacing: 0.15em;
     }
 }

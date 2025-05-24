@@ -258,7 +258,7 @@ html, body {
         width: 630px;
         background: white;
         color: #737373;
-        font-size: 16px;
+        font-size: 14px;
         border-radius: 10px;
         margin-top: 45px;
         border-collapse: collapse;
@@ -298,7 +298,7 @@ html, body {
     .staff-attendance-table__body-row {
         border-bottom: 2px solid #E1E1E1;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .staff-attendance-table__body--date {
@@ -318,11 +318,11 @@ html, body {
     }
     
     .staff-attendance-table__body--total {
-        padding: 13px 0px 8px 5px;
+        padding: 13px 0px 8px 8px;
     }
     
     .staff-attendance-table__body--detail {
-        padding: 13px 0px 8px 4px;
+        padding: 13px 0px 8px 6px;
     }
     
     .detail-link {

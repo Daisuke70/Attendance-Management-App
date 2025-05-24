@@ -18,49 +18,59 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('email', 'test@user.com')->first();
-        if (!$user) {
-            $this->command->warn('ユーザーが見つかりませんでした。');
-            return;
-        }
+        $emails = [
+            'test@user.com',
+            'test@user3.com',
+            'test@user5.com',
+        ];
 
-        $attendances = Attendance::where('user_id', $user->id)
-            ->inRandomOrder()
-            ->limit(10)
-            ->get()
-            ->sortBy('id')
-            ->values();
         $fixedDate = Carbon::parse('2025-05-08 18:00:00');
 
-        foreach ($attendances as $index => $attendance) {
-            $status = $index < 7 ? 'pending' : 'approved';
+        foreach ($emails as $email) {
+            $user = User::where('email', $email)->first();
+            if (!$user) {
+                $this->command->warn("ユーザー {$email} が見つかりませんでした。");
+                continue;
+            }
 
-            $correction = AttendanceCorrectionRequest::create([
-                'user_id' => $user->id,
-                'attendance_id' => $attendance->id,
-                'new_clock_in' => '09:00',
-                'new_clock_out' => '17:30',
-                'new_note' => '電車遅延のため',
-                'status' => $status,
-                'created_at' => $fixedDate,
-                'updated_at' => $fixedDate,
-            ]);
+            $attendances = Attendance::where('user_id', $user->id)
+                ->inRandomOrder()
+                ->limit(5)
+                ->get()
+                ->sortBy('id')
+                ->values();
 
-            AttendanceCorrectionBreakTime::create([
-                'attendance_correction_request_id' => $correction->id,
-                'new_start_time' => '12:00',
-                'new_end_time' => '12:30',
-                'created_at' => $fixedDate,
-                'updated_at' => $fixedDate,
-            ]);
+            foreach ($attendances as $index => $attendance) {
+                $status = $index < 3 ? 'pending' : 'approved';
 
-            AttendanceCorrectionBreakTime::create([
-                'attendance_correction_request_id' => $correction->id,
-                'new_start_time' => '12:30',
-                'new_end_time' => '13:00',
-                'created_at' => $fixedDate,
-                'updated_at' => $fixedDate,
-            ]);
+                $correction = AttendanceCorrectionRequest::create([
+                    'user_id' => $user->id,
+                    'attendance_id' => $attendance->id,
+                    'new_clock_in' => '09:00',
+                    'new_clock_out' => '17:30',
+                    'new_note' => '電車遅延のため',
+                    'status' => $status,
+                    'created_at' => $fixedDate,
+                    'updated_at' => $fixedDate,
+                ]);
+
+                AttendanceCorrectionBreakTime::insert([
+                    [
+                        'attendance_correction_request_id' => $correction->id,
+                        'new_start_time' => '12:00',
+                        'new_end_time' => '12:30',
+                        'created_at' => $fixedDate,
+                        'updated_at' => $fixedDate,
+                    ],
+                    [
+                        'attendance_correction_request_id' => $correction->id,
+                        'new_start_time' => '12:30',
+                        'new_end_time' => '13:00',
+                        'created_at' => $fixedDate,
+                        'updated_at' => $fixedDate,
+                    ]
+                ]);
+            }
         }
     }
 }

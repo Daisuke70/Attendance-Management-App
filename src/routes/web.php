@@ -33,7 +33,7 @@ Route::get('/admin/login', [AdminAuthController::class, 'showAdminLoginForm']);
 Route::post('/admin/login', [AdminAuthController::class, 'adminLogin'])->name('admin.login');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'is_user'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('attendances.create');
     Route::post('/attendance/clock-in', [AttendanceController::class, 'clockIn'])->name('attendances.clockIn');
@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stamp_correction_request/list', [AttendanceCorrectionController::class, 'listUserRequests'])->name('correction-requests.index');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::post('/admin/logout', [AdminAuthController::class, 'adminLogout'])->name('admin.logout');
     Route::get('/admin/attendance/list', [AdminAttendanceController::class, 'listAllAttendances'])->name('admin.attendances.index');
     Route::get('/admin/attendance/{id}', [AdminAttendanceController::class, 'showStaffAttendance'])->name('admin.attendances.detail');

@@ -57,5 +57,5 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/attendance/staff/{id}/export', [AdminAttendanceController::class, 'exportCsv'])->name('admin.staff.attendances.export');
     Route::get('/admin/stamp_correction_request/list', [AdminAttendanceCorrectionController::class, 'listAllCorrectionRequests'])->name('admin.correction_requests.index');
     Route::get('/admin/stamp_correction_request/approve/{attendance_correct_request}', [AdminAttendanceCorrectionController::class, 'showApprovalPage'])->name('admin.correction_requests.showApproval');
-    Route::post('/admin/stamp_correction_request/approve/{attendance_correct_request}', [AdminAttendanceCorrectionController::class, 'approveCorrectionRequest'])->name('admin.correction_requests.storeApproval');
+    Route::patch('/admin/stamp_correction_request/approve/{attendance_correct_request}', [AdminAttendanceCorrectionController::class, 'approveCorrectionRequest'])->name('admin.correction_requests.storeApproval');
 });

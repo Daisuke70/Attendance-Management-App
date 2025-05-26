@@ -36,4 +36,29 @@ class AdminAttendanceCorrectionController extends Controller
 
         return view('admin.request.approve', compact('correctionRequest'));
     }
+
+    public function approveCorrectionRequest(Request $request, $id)
+    {
+        $correction = AttendanceCorrectionRequest::with(['attendance', 'correctionBreakTimes'])->findOrFail($id);
+
+        $attendance = $correction->attendance;
+        $attendance->clock_in = $correction->new_clock_in;
+        $attendance->clock_out = $correction->new_clock_out;
+        $attendance->note = $correction->new_note;
+        $attendance->save();
+
+        $attendance->breakTimes()->delete();
+    
+        foreach ($correction->correctionBreakTimes as $break) {
+            $attendance->breakTimes()->create([
+                'start_time' => $break->new_start_time,
+                'end_time' => $break->new_end_time,
+            ]);
+        }
+
+        $correction->status = 'approved';
+        $correction->save();
+    
+        return redirect()->route('admin.correction_requests.index');
+    }
 }

@@ -57,15 +57,15 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
                 AttendanceCorrectionBreakTime::insert([
                     [
                         'attendance_correction_request_id' => $correction->id,
-                        'new_start_time' => '12:00',
-                        'new_end_time' => '12:30',
+                        'new_start_time' => '12:30',
+                        'new_end_time' => '13:00',
                         'created_at' => $fixedDate,
                         'updated_at' => $fixedDate,
                     ],
                     [
                         'attendance_correction_request_id' => $correction->id,
-                        'new_start_time' => '12:30',
-                        'new_end_time' => '13:00',
+                        'new_start_time' => '13:00',
+                        'new_end_time' => '13:30',
                         'created_at' => $fixedDate,
                         'updated_at' => $fixedDate,
                     ]

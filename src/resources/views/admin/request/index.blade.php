@@ -43,7 +43,7 @@
                     <td class="admin-request-table__note">{{ $request->new_note }}</td>
                     <td class="admin-request-table__request-date">{{ $request->created_at->format('Y/m/d') }}</td>
                     <td class="admin-request-table__detail">
-                        <a href="{{ route('attendances.detail', $request->attendance->id) }}" class="detail-link">詳細</a>
+                        <a href="{{ route('admin.correction_requests.showApproval', ['attendance_correct_request' => $request->id]) }}" class="detail-link">詳細</a>
                     </td>
                 </tr>
             @endforeach

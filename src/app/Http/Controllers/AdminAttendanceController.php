@@ -54,6 +54,7 @@ class AdminAttendanceController extends Controller
     public function showStaffAttendance($id)
     {
         $attendance = Attendance::with('breakTimes', 'user')->findOrFail($id);
+
         return view('admin.attendance.detail', compact('attendance'));
     }
 

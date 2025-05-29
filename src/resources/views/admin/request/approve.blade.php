@@ -46,12 +46,12 @@
                         <div class="break-time__group">
                             <input type="time" name="breaks[{{ $index }}][new_start_time]"
                                 value="{{ old("breaks.$index.new_start_time", \Carbon\Carbon::parse($break->new_start_time)->format('H:i')) }}"
-                                class="correction-detail__input"
+                                class="correction-detail__input--break"
                                 readonly />
                             〜
                             <input type="time" name="breaks[{{ $index }}][new_end_time]"
                                 value="{{ old("breaks.$index.new_end_time", \Carbon\Carbon::parse($break->new_end_time)->format('H:i')) }}"
-                                class="correction-detail__input"
+                                class="correction-detail__input--break"
                                 readonly />
                         </div>
                     @endforeach
@@ -66,7 +66,9 @@
         </table>
         
         @if ($isApproved)
-            <p class="approve-message">承認済み</p>
+            <div class="approve-content">
+                <p class="approve-message">承認済み</p>
+            </div>
         @else
             <div class="button-content">
                 <button type="submit" class="approve-button">承認</button>

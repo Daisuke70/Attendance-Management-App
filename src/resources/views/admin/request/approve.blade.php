@@ -60,7 +60,7 @@
             <tr class="correction-detail__tr">
                 <th class="correction-detail__th">備考</th>
                 <td class="correction-detail__note">
-                    <textarea name="new_note" rows="3" cols="40"  class="correction-detail__textarea">{{ old('new_note', $correctionRequest->new_note) }}</textarea>
+                    <textarea name="new_note" rows="3" cols="40"  class="correction-detail__textarea" readonly >{{ old('new_note', $correctionRequest->new_note) }}</textarea>
                 </td>
             </tr>
         </table>

@@ -35,7 +35,7 @@ class AttendanceCorrectionRequestsSeeder extends Seeder
 
             $attendances = Attendance::where('user_id', $user->id)
                 ->inRandomOrder()
-                ->limit(5)
+                ->limit(6)
                 ->get()
                 ->sortBy('id')
                 ->values();

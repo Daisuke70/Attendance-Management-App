@@ -27,6 +27,7 @@ class AttendanceClockInTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '勤務外',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -42,6 +43,7 @@ class AttendanceClockInTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '退勤済',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));

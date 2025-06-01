@@ -28,6 +28,7 @@ class AttendanceBreakTest extends TestCase
             'status' => '出勤中',
             'date' => Carbon::now()->toDateString(),
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -80,6 +81,7 @@ class AttendanceBreakTest extends TestCase
         ]);
 
         $this->actingAs($user);
+
         $response = $this->get(route('attendances.create'));
         $response->assertSee('休憩入');
     }
@@ -100,6 +102,7 @@ class AttendanceBreakTest extends TestCase
         ]);
 
         $this->actingAs($user);
+
         $response = $this->post('/attendance/break-end');
         $response->assertRedirect(route('attendances.create'));
 
@@ -118,6 +121,7 @@ class AttendanceBreakTest extends TestCase
             'status' => '休憩中',
             'date' => Carbon::now()->toDateString(),
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -141,6 +145,7 @@ class AttendanceBreakTest extends TestCase
         ]);
 
         $this->actingAs($user);
+
         $response = $this->get(route('attendances.index', [
             'date' => Carbon::now()->format('Y-m')
         ]));

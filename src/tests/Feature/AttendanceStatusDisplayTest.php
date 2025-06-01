@@ -27,6 +27,7 @@ class AttendanceStatusDisplayTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '勤務外',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -42,6 +43,7 @@ class AttendanceStatusDisplayTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '出勤中',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -57,6 +59,7 @@ class AttendanceStatusDisplayTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '休憩中',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
@@ -72,6 +75,7 @@ class AttendanceStatusDisplayTest extends TestCase
             'date' => Carbon::now()->toDateString(),
             'status' => '退勤済',
         ]);
+
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));

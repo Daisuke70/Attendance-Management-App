@@ -35,7 +35,7 @@ class AttendanceController extends Controller
             $attendance->save();
         }
 
-        return redirect()->back();
+        return redirect()->route('attendances.create');
     }
 
     public function startBreak()
@@ -51,7 +51,7 @@ class AttendanceController extends Controller
             'end_time' => null,
         ]);
     
-        return redirect()->back();
+        return redirect()->route('attendances.create');
     }
     
     public function endBreak()
@@ -67,7 +67,7 @@ class AttendanceController extends Controller
         $attendance->status = Attendance::STATUS_WORKING;
         $attendance->save();
     
-        return redirect()->back();
+        return redirect()->route('attendances.create');
     }
 
     public function clockOut()
@@ -80,7 +80,7 @@ class AttendanceController extends Controller
             $attendance->save();
         }
 
-        return redirect()->back();
+        return redirect()->route('attendances.create');
     }
 
     private function getTodayAttendance()

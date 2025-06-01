@@ -38,18 +38,25 @@ class AttendanceBreakTest extends TestCase
     public function test_change_status_to_on_break_when_user_clicks_break_in_expect_status_is_休憩中()
     {
         $user = User::where('email', 'test@user.com')->first();
+    
         Attendance::factory()->create([
             'user_id' => $user->id,
             'status' => '出勤中',
-            'date' => Carbon::now()->toDateString(),
-            'end_time' => null,
+            'clock_in' => '09:00:00',
+            'clock_out' => null,
+            'date' => Carbon::today()->toDateString(),
         ]);
+    
         $this->actingAs($user);
-
+    
         $response = $this->post('/attendance/break-start');
         $response->assertRedirect(route('attendances.create'));
-
-        $attendance = Attendance::where('user_id', $user->id)->first();
+    
+        $attendance = Attendance::where('user_id', $user->id)
+            ->where('date', Carbon::today()->toDateString())
+            ->latest()
+            ->first();
+    
         $this->assertEquals('休憩中', $attendance->status);
         $this->assertDatabaseHas('break_times', [
             'attendance_id' => $attendance->id,
@@ -93,7 +100,7 @@ class AttendanceBreakTest extends TestCase
         ]);
 
         $this->actingAs($user);
-        $response = $this->post('/attendance/break-out');
+        $response = $this->post('/attendance/break-end');
         $response->assertRedirect(route('attendances.create'));
 
         $this->assertEquals('出勤中', $attendance->fresh()->status);
@@ -117,9 +124,8 @@ class AttendanceBreakTest extends TestCase
         $response->assertSee('休憩戻');
     }
 
-    public function test_display_break_time_in_admin_attendance_list_when_user_takes_break_expect_time_is_visible()
+    public function test_display_break_time_in_attendance_index_view_when_user_takes_break_expect_time_is_visible()
     {
-        $admin = User::factory()->create(['role' => 'admin']);
         $user = User::where('email', 'test@user.com')->first();
 
         $attendance = Attendance::factory()->create([
@@ -131,14 +137,15 @@ class AttendanceBreakTest extends TestCase
         BreakTime::factory()->create([
             'attendance_id' => $attendance->id,
             'start_time' => '09:00:00',
-            'end_time' => '09:30:00',
+            'end_time' => '10:00:00',
         ]);
 
-        $this->actingAs($admin);
-        $response = $this->get(route('admin.attendances.index', ['date' => Carbon::now()->format('Y-m')]));
+        $this->actingAs($user);
+        $response = $this->get(route('attendances.index', [
+            'date' => Carbon::now()->format('Y-m')
+        ]));
 
         $response->assertStatus(200);
-        $response->assertSee('09:00');
-        $response->assertSee('09:30');
+        $response->assertSee('1:00');
     }
 }

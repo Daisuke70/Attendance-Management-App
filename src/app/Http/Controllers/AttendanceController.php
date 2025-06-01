@@ -42,14 +42,15 @@ class AttendanceController extends Controller
     {
         $attendance = $this->getTodayAttendance();
 
-        $attendance->status = Attendance::STATUS_ON_BREAK;
-        $attendance->save();
-
-        BreakTime::create([
-            'attendance_id' => $attendance->id,
-            'start_time' => now()->format('H:i:s'),
-            'end_time' => null,
-        ]);
+        if ($attendance->status === '出勤中') {
+            $attendance->status = '休憩中';
+            $attendance->save();
+    
+            BreakTime::create([
+                'attendance_id' => $attendance->id,
+                'start_time' => now(),
+            ]);
+        }
     
         return redirect()->route('attendances.create');
     }
@@ -85,10 +86,14 @@ class AttendanceController extends Controller
 
     private function getTodayAttendance()
     {
-        return Attendance::firstOrCreate(
-            ['user_id' => Auth::id(), 'date' => Carbon::today()],
-            ['status' => Attendance::STATUS_OFF_DUTY]
-        );
+        return Attendance::where('user_id', Auth::id())
+            ->whereDate('date', Carbon::today())
+            ->firstOrCreate([
+                'user_id' => Auth::id(),
+                'date' => Carbon::today(),
+            ], [
+                'status' => Attendance::STATUS_OFF_DUTY,
+            ]);
     }
 
     public function listUserAttendances(Request $request)

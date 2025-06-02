@@ -33,6 +33,7 @@ class AttendanceClockOutTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->get(route('attendances.create'));
+
         $response->assertStatus(200);
         $response->assertSee('退勤');
     }
@@ -49,7 +50,6 @@ class AttendanceClockOutTest extends TestCase
         ]);
 
         $this->actingAs($user);
-
         $response = $this->post('/attendance/clock-out', [
             'date' => Carbon::now()->toDateString(),
         ]);

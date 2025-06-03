@@ -18,14 +18,14 @@ class AdminAttendanceListTest extends TestCase
         $this->seed();
     }
 
-    private function getSeededUser(): User
+    private function getSeededAdmin(): User
     {
         return User::where('email', 'test@admin.com')->firstOrFail();
     }
 
     public function test_display_all_attendance_data_when_admin_accesses_attendance_list_expect_all_data_visible()
     {
-        $admin = $this->getSeededUser();
+        $admin = $this->getSeededAdmin();
         $user1 = User::factory()->create(['role' => 'user']);
         $user2 = User::factory()->create(['role' => 'user']);
         $today = Carbon::today()->toDateString();
@@ -42,7 +42,7 @@ class AdminAttendanceListTest extends TestCase
 
     public function test_display_current_date_when_admin_accesses_attendance_list_expect_today_visible()
     {
-        $admin = $this->getSeededUser();
+        $admin = $this->getSeededAdmin();
         $today = now()->format('Y/m/d');
 
         $response = $this->actingAs($admin)->get(route('admin.attendances.index'));
@@ -53,7 +53,7 @@ class AdminAttendanceListTest extends TestCase
 
     public function test_display_previous_day_data_when_admin_clicks_prev_expect_previous_day_visible()
     {
-        $admin = $this->getSeededUser();
+        $admin = $this->getSeededAdmin();
         $user = User::factory()->create(['role' => 'user']);
         $yesterday = now()->format('Y/m/d');
 
@@ -68,7 +68,7 @@ class AdminAttendanceListTest extends TestCase
 
     public function test_display_next_day_data_when_admin_clicks_next_expect_next_day_visible()
     {
-        $admin = $this->getSeededUser();
+        $admin = $this->getSeededAdmin();
         $user = User::factory()->create(['role' => 'user']);
         $tomorrow = now()->format('Y/m/d');
 

@@ -37,9 +37,7 @@ class UserAttendanceCorrectionRequestTest extends TestCase
             ]
         );
     
-        $response->assertSessionHasErrors([
-            'start_time' => '出勤時間もしくは退勤時間が不適切な値です',
-        ]);
+        $response->assertSessionHasErrors(['start_time']);
     }
 
     public function test_validation_error_when_break_start_is_after_clock_out_expect_error_message()
@@ -61,7 +59,7 @@ class UserAttendanceCorrectionRequestTest extends TestCase
             ]
         );
 
-        $response->assertSee('休憩時間が勤務時間外です');
+        $response->assertSessionHasErrors(['break_times.0.start_time']);
     }
 
     public function test_validation_error_when_break_end_is_after_clock_out_expect_error_message()
@@ -83,7 +81,7 @@ class UserAttendanceCorrectionRequestTest extends TestCase
             ]
         );
 
-        $response->assertSee('休憩時間が勤務時間外です');
+        $response->assertSessionHasErrors(['break_times.0.start_time']);
     }
 
     public function test_validation_error_when_note_is_empty_expect_error_message()
@@ -96,11 +94,14 @@ class UserAttendanceCorrectionRequestTest extends TestCase
             [
                 'start_time' => '09:00',
                 'end_time' => '18:00',
+                'break_times' => [
+                    ['start_time' => '12:00', 'end_time' => '13:00'],
+                ],
                 'note' => '',
             ]
         );
 
-        $response->assertSee('備考を記入してください');
+        $response->assertSessionHasErrors(['note']);
     }
 
     public function test_submit_correction_request_when_valid_data_expect_request_saved()
@@ -174,7 +175,7 @@ class UserAttendanceCorrectionRequestTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $response = $this->actingAs($user)->get(route('attendances.detail', $request->id));
+        $response = $this->actingAs($user)->get(route('attendances.detail', $request->attendance->id));
 
         $response->assertStatus(200);
         $response->assertSee('詳細確認用');

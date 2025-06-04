@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\LoginAdminRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
@@ -13,7 +13,7 @@ class AdminAuthController extends Controller
         return view('admin.auth.login');
     }
 
-    public function adminLogin(LoginRequest $request)
+    public function adminLogin(LoginAdminRequest $request)
     {
         $request->authenticate();
 

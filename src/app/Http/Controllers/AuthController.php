@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +40,7 @@ class AuthController extends Controller
         return view('user.auth.login');
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginUserRequest $request)
     {
         $request->authenticate();
     

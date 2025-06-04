@@ -28,16 +28,12 @@ class AdminAttendanceCorrectionController extends Controller
 
     public function showApprovalPage($id)
     {
-        $attendance = Attendance::with('breakTimes', 'user')->findOrFail($id);
-
         $correctionRequest = AttendanceCorrectionRequest::with([
-            'user',
-            'attendance',
-            'correctionBreakTimes'
+            'user', 'attendance', 'correctionBreakTimes'
         ])->findOrFail($id);
-
+    
         $isApproved = $correctionRequest->status === 'approved';
-
+    
         return view('admin.request.approve', compact('correctionRequest', 'isApproved'));
     }
 

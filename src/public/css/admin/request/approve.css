@@ -142,9 +142,10 @@ html, body {
     color: white;
     font-size: 20px;
     font-weight: bold;
-    padding: 8px 40px;
+    padding: 8px 35px;
     border: black;
     border-radius: 6px;
+    letter-spacing: 0.15em;
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
@@ -293,8 +294,9 @@ html, body {
         color: white;
         font-size: 18px;
         font-weight: bold;
-        padding: 8px 35px;
+        padding: 8px 30px;
         border: black;
         border-radius: 6px;
+        letter-spacing: 0.15em;
     }
 }

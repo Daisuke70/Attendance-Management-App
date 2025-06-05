@@ -128,7 +128,7 @@ html, body {
 }
 
 .attendance-table__body--date {
-    padding: 15px 0px 13px 60px;
+    padding: 15px 10px 13px 0px;
 }
 
 .attendance-table__body--in {
@@ -144,7 +144,7 @@ html, body {
 }
 
 .attendance-table__body--total {
-    padding: 15px 0px 13px 30px;
+    padding: 15px 0px 10px 8px;
 }
 
 .attendance-table__body--detail {

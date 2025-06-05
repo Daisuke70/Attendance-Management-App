@@ -34,6 +34,7 @@ class UpdateAttendanceByAdminRequest extends FormRequest
                 'after_or_equal:start_time',
                 'before_or_equal:end_time',
             ],
+
             'break_times.*.end_time' => [
                 'nullable',
                 'date_format:H:i',

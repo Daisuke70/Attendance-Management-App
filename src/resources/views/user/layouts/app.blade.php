@@ -14,7 +14,7 @@
         <div class="header-content">
             <div class="header-content__logo">
                 <img src="{{ asset('/images/logo.svg') }}" alt="ロゴの画像" id="title" class="logo-img">
-            </div>x
+            </div>
             <div class="header-content__link">
                 <a href="{{ route('attendances.create')}}" class="header-link">勤怠</a>
                 <a href="{{ route('attendances.index')}}" class="header-link">勤怠一覧</a>

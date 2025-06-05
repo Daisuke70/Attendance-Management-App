@@ -93,16 +93,10 @@ html, body {
 
 .admin-request-table__attendance-date {
     letter-spacing: 0em;
-    padding-left: 8px;
-}
-
-.admin-request-table__note {
-    padding-left: 7px;
 }
 
 .admin-request-table__request-date {
     letter-spacing: 0em;
-    padding-left: 8px;
 }
 
 .detail-link {
@@ -212,7 +206,6 @@ html, body {
     
     .admin-request-table__attendance-date {
         letter-spacing: 0em;
-        padding-left: 0px;
     }
     
     .admin-request-table__note {

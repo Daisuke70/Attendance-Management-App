@@ -26,7 +26,7 @@
             <tr class="admin-request-table__head-row">
                 <th class="admin-request-table__head--condition">状態</th>
                 <th class="admin-request-table__head-th">名前</th>
-                <th class="admin-request-table__head-th">対象日時</th>
+                <th class="admin-request-table__head--date">対象日時</th>
                 <th class="admin-request-table__head-th">申請理由</th>
                 <th class="admin-request-table__head-th">申請日時</th>
                 <th class="admin-request-table__head-th">詳細</th>

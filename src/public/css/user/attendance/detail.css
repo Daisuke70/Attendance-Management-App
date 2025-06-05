@@ -447,7 +447,7 @@ textarea.is-readonly:focus {
         color: black !important;
         pointer-events: none;
     }
-    
+
     input.is-readonly:focus,
     textarea.is-readonly:focus {
         outline: none;

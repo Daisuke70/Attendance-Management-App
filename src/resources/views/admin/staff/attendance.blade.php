@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="staff-attendance-table">
-    <h2>{{ $user->name }}さんの勤怠一覧</h2>
+    <h2>{{ $user->name }}さんの勤怠</h2>
 
     <div class="staff-attendance-table__month-nav">
         <a href="{{ route('admin.staff.attendances.index', ['id' => $user->id, 'date' => $targetDate->copy()->subMonth()->format('Y-m')]) }}"

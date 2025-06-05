@@ -367,7 +367,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         border: #EBEBEB 1.5px solid;
         border-radius: 5px;
         margin: 28px 0px 25px 40px;
-        width: 250px;
+        width: 270px;
         font-size: 14px;
         padding: 10px 10px;
     }

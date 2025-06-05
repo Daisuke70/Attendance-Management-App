@@ -22,7 +22,7 @@ html, body {
 .staff-attendance-table h2 {
     border-left: 7px solid black;
     padding-left: 20px;
-    margin: 65px 640px 0px 0px;
+    margin: 65px 690px 0px 0px;
     letter-spacing: 0em;
 }
 
@@ -199,7 +199,7 @@ html, body {
         border-left: 7px solid black;
         padding-left: 20px;
         font-size: 21px;
-        margin: 40px 380px 0px 0px;
+        margin: 40px 420px 0px 0px;
     }
     
     .staff-attendance-table__month-nav {

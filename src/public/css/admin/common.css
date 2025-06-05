@@ -81,7 +81,7 @@
         color: white;
         text-decoration: none;
         border: none;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: bold;
         margin: 30px 15px 0px 0px;
     }
@@ -124,7 +124,7 @@
     
     .header-content__link {
         display: flex;
-        margin-left: 210px;
+        margin-left: 200px;
     }
     
     .header-link {

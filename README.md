@@ -49,7 +49,7 @@ php artisan storage:link
 ・Stripe（テスト決済処理）  
 
 ## ER図  
-<img width="469" alt="フリマアプリ　ER図" src="https://github.com/user-attachments/assets/1d5b70af-c9d5-4e33-9bd5-6a85d7e097f4" />
+
 
 ## URL
 ・開発環境：http://localhost/  

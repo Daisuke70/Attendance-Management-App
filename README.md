@@ -49,7 +49,7 @@ php artisan storage:link
 ・Stripe（テスト決済処理）  
 
 ## ER図  
-![alt text](<勤怠管理アプリ　ER図-1.png>)  
+<img width="577" alt="勤怠管理アプリ　ER図" src="https://github.com/user-attachments/assets/c70e1a40-3f9a-45f2-af8b-8eeecb5a2f87" />
 
 ## URL
 ・開発環境：http://localhost/  

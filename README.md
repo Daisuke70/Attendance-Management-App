@@ -49,7 +49,7 @@ php artisan storage:link
 ・Stripe（テスト決済処理）  
 
 ## ER図  
-
+![alt text](<勤怠管理アプリ　ER図.png>)
 
 ## URL
 ・開発環境：http://localhost/  

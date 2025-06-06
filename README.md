@@ -33,11 +33,24 @@ php artisan db:seed
 8.シンボリックリンク作成  
 php artisan storage:link  
 9.テストユーザーのメールアドレス、パスワード  
+1．一般ユーザー  
 ・ユーザー1  
-メールアドレス：test@example.com  
-パスワード：password123  
+メールアドレス：test@user.com  
+パスワード：11111111  
 ・ユーザー2  
-メールアドレス：test@email.com  
+メールアドレス：test@user2.com  
+パスワード：22222222  
+・ユーザー3  
+メールアドレス：test@user3.com  
+パスワード：33333333
+・ユーザー4  
+メールアドレス：test@user4.com  
+パスワード：44444444
+・ユーザー5  
+メールアドレス：test@user5.com  
+パスワード：55555555  
+2．管理者ユーザー  
+メールアドレス：test@admin.com  
 パスワード：12345678  
 
 ## 使用技術(実行環境)  

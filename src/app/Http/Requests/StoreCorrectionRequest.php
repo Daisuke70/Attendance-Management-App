@@ -63,6 +63,15 @@ class StoreCorrectionRequest extends FormRequest
                 foreach ($breakTimes as $i => $break) {
                     $breakStart = $break['start_time'] ?? null;
                     $breakEnd = $break['end_time'] ?? null;
+
+                    if (empty($breakStart) && empty($breakEnd)) {
+                        continue;
+                    }
+
+                    if (empty($breakStart) || empty($breakEnd)) {
+                        $validator->errors()->add("break_times.$i.start_time", '休憩開始時間と休憩終了時間の両方を入力してください。');
+                        continue;
+                    }
     
                     if (($breakStart && ($breakStart < $startTime || $breakStart > $endTime)) ||
                         ($breakEnd && ($breakEnd < $startTime || $breakEnd > $endTime))) {

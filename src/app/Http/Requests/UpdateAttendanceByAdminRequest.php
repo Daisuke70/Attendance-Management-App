@@ -81,7 +81,7 @@ class UpdateAttendanceByAdminRequest extends FormRequest
                         $validator->errors()->add("break_times.$i.start_time", '休憩開始時間と休憩終了時間の両方を入力してください。');
                         continue;
                     }
-    
+
                     if (
                         ($breakStart < $startTime || $breakStart > $endTime) ||
                         ($breakEnd < $startTime || $breakEnd > $endTime)

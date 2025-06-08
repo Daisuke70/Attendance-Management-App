@@ -410,7 +410,7 @@ textarea.is-readonly:focus {
     .attendance-detail__error-message__note {
         color: red;
         font-size: 13px;
-        transform: translate(37%, -8px);
+        transform: translate(38%, -8px);
     }
     
     .attendance-detail__button {

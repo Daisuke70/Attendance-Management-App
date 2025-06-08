@@ -297,11 +297,11 @@ html, body {
     }
     
     .attendance-table__body--total {
-        padding: 13px 0px 8px 10px;
+        padding: 13px 0px 8px 8px;
     }
     
     .attendance-table__body--detail {
-        padding: 13px 0px 8px 8px;
+        padding: 13px 0px 8px 4px;
     }
     
     .detail-link {

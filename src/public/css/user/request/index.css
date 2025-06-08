@@ -171,7 +171,7 @@ html, body {
     }
     
     .request-table__table {
-        width: 660px;
+        width: 670px;
         background: white;
         color: #737373;
         font-size: 15px;
@@ -195,24 +195,24 @@ html, body {
     .request-table__body-row {
         border-bottom: 2px solid #E1E1E1;
         font-weight: bold;
-        font-size: 13px;
+        font-size: 14px;
     }
     
     .request-table__condition {
-        padding: 13px 0px 13px 30px;
+        padding: 13px 0px 13px 35px;
     }
     
     .request-table__user-name {
-        padding-left: 10px;
+        padding-left: 15px;
     }
     
     .request-table__attendance-date {
         letter-spacing: 0em;
-        padding-left: 8px;
+        padding:0px 10px 0px 0px;
     }
     
     .request-table__note {
-        padding-left: 7px;
+        padding-left: 0px;
     }
     
     .request-table__request-date {
@@ -223,6 +223,6 @@ html, body {
     .detail-link {
         text-decoration: none;
         color: black;
-        padding-left: 28px;
+        padding-left: 30px;
     }
 }

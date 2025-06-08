@@ -30,9 +30,7 @@ php artisan key:generate
 php artisan migrate  
 7.シーディングの実行  
 php artisan db:seed  
-8.シンボリックリンク作成  
-php artisan storage:link  
-9.テストユーザーのメールアドレス、パスワード  
+8.テストユーザーのメールアドレス、パスワード  
 1．一般ユーザー  
 ・ユーザー1  
 メールアドレス：test@user.com  

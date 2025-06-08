@@ -59,7 +59,6 @@ php artisan storage:link
 ・MySQL 15.1  
 ・Docker / Docker Compose  
 ・MailHog（開発用メール確認ツール）  
-・Stripe（テスト決済処理）  
 
 ## ER図  
 <img width="577" alt="勤怠管理アプリ　ER図" src="https://github.com/user-attachments/assets/c70e1a40-3f9a-45f2-af8b-8eeecb5a2f87" />

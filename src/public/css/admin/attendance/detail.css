@@ -195,10 +195,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .form-error-message__break {
     color: red;
-    font-size: 16px;
+    font-size: 14px;
     transform: translate(40px, -30px);
-    letter-spacing: 0.1em;
+    letter-spacing: 0zem;
     width: 450px;
+    letter-spacing: 0.1em;
 }
 
 .form-error-message__note {

@@ -390,7 +390,7 @@ textarea.is-readonly:focus {
     .attendance-detail__break-time__error-message {
         transform: translateY(-20px);
         color: red;
-        font-size: 12px;
+        font-size: 13px;
     }
     
     .attendance-detail__group-remarks {
@@ -406,7 +406,7 @@ textarea.is-readonly:focus {
         font-size: 13px;
         padding: 10px 10px;
     }
-
+    
     .attendance-detail__error-message__note {
         color: red;
         font-size: 13px;
